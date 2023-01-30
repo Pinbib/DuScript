@@ -4,10 +4,12 @@ var variable = {};
 function createVar(name, value) {
     variable[name] = value;
 }
-
+function editVar(name, value) {
+    variable[name] = value;
+}
 for (var i = 0; i < document.querySelectorAll('script').length; i++) {
     var script = document.querySelectorAll('script');
-    if (script[i].attributes.language.value == 'text/nameLang') {
+    if (script[i].attributes.language.value == 'text/duScript') {
         scripts = script[i].innerHTML;
         i += script.length + 64;
     }
@@ -19,7 +21,9 @@ for (var i = 0; i < lines.length; i++) {
     let line = lines[i].replace(/^\s+|\s+$/g, "").split(' ');
 
     if (line[0] == 'approve') {
-        if (line[3].indexOf('\'') != -1) {
+        if (line.length == 2) {
+            createVar(line[1], 'void');
+        } else if (line[3].indexOf('\'') != -1) {
             createVar(line[1], line[3].replace(/['"]+/g, ''));
         } else {
             createVar(line[1], line[3]);
@@ -31,6 +35,17 @@ for (var i = 0; i < lines.length; i++) {
             }
         } else {
             console.log(variable[line[1]]);
+        }
+    } else if (line[0] == 'Edit') {
+        if (line[3] == 'Math') {
+            var m = [];
+            for (var r = 4; r < line.length; r++) {
+                m.push(line[r]);
+            }
+            var rs = eval(m.join(''));
+            editVar(line[1], rs)
+        } else {
+            editVar(line[1], line[3]);
         }
     } else if (line[0].indexOf('(') != -1) {
         var newline = lines[i].replace(/^\s+|\s+$/g, "").split(/[\(\)]/);
