@@ -1,5 +1,14 @@
 var scripts;
 var variable = {};
+var coment = {
+    "index": 0
+};
+function createComent(type, value) {
+    coment['comment' + coment.index] = {};
+    coment['comment' + coment.index].type = type;
+    coment['comment' + coment.index].value = value;
+    coment.index++;
+}
 function createVar(name, value) {
     variable[name] = value;
 }
@@ -9,6 +18,11 @@ function editVar(name, value) {
 function createArr(name, value) {
     variable[name] = {};
     variable[name].iValue = 'Arr';
+    variable[name].eValue = value;
+}
+function createObject(name, value) {
+    variable[name] = {};
+    variable[name].iValue = 'Obj';
     variable[name].eValue = value;
 }
 for (var i = 0; i < document.querySelectorAll('script').length; i++) {
@@ -32,6 +46,10 @@ for (var i = 0; i < lines.length; i++) {
         } if (line[3] == 'Array') {
             var arr = line.slice(4, line.length);
             createArr(line[1], arr);
+        } else if (line[3] == 'JSON') {
+            var get = line.slice(4).join('');
+            var obj = JSON.parse(get);
+            createObject(line[1], data);
         } else {
             createVar(line[1], line[3]);
         }
@@ -59,6 +77,12 @@ for (var i = 0; i < lines.length; i++) {
         } else {
             editVar(line[1], line[3]);
         }
+    } else if (line[0] == 'get') {
+        if (line[1] == 'all') {
+            console.log(variable[line[2]].eValue)
+        }
+    } else if (line[0] == '//' || 'rem:' || '::' || '(:') {
+        createComent(line[0], line.slice(1, line.length));
     } else if (line[0].indexOf('(') != -1) {
         var newline = lines[i].replace(/^\s+|\s+$/g, "").split(/[\(\)]/);
         if (newline[0] == 'printl') {
