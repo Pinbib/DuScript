@@ -28,6 +28,12 @@ Creating an empty variable
 
 ```approve [name];```
 
+The creation of an array passes through the command: 
+
+```approve [name] = Array value;```
+
+The symbol [ and ] also, when listing the values of an array, the symbol "," is not required.
+
 ##Changing the value of a variable
 
 Changing the value of a variable occurs through the "Edit" command.
@@ -45,6 +51,13 @@ Command ```call msg;``` will output ```value msg```, and command ```call msg msg
  ```value msg```
  
 ```value msg```
+
+The array output is passed through the command:
+
+``` call [array] [index ] ```
+
+When displaying an array through "call", you can only enter one value and the value of the index is mandatory, otherwise it will be displayed undefined.
+The symbol [ and ] is not required.
 
 ##Mathematical operations
 
