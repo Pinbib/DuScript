@@ -1,11 +1,15 @@
 var scripts;
 var variable = {};
-
 function createVar(name, value) {
     variable[name] = value;
 }
 function editVar(name, value) {
     variable[name] = value;
+}
+function createArr(name, value) {
+    variable[name] = {};
+    variable[name].iValue = 'Arr';
+    variable[name].eValue = value;
 }
 for (var i = 0; i < document.querySelectorAll('script').length; i++) {
     var script = document.querySelectorAll('script');
@@ -25,16 +29,24 @@ for (var i = 0; i < lines.length; i++) {
             createVar(line[1], 'void');
         } else if (line[3].indexOf('\'') != -1) {
             createVar(line[1], line[3].replace(/['"]+/g, ''));
+        } if (line[3] == 'Array') {
+            var arr = line.slice(4, line.length);
+            createArr(line[1], arr);
         } else {
             createVar(line[1], line[3]);
         }
     } else if (line[0] == 'call') {
         if (line.length > 2) {
-            for (var r = 1; r < line.length; r++) {
-                console.log(variable[line[r]]);
+            for (let r = 1; r < line.length; r++) {
+                if (variable[line[r]] && typeof variable[line[r]].iValue !== 'undefined') {
+                    if (variable[line[r]].iValue == 'Arr') {
+                        console.log(variable[line[r]].eValue[line[r + 1]]);
+                    }
+                    //JSON
+                }
             }
         } else {
-            console.log(variable[line[1]]);
+            console.log(variable[line[r]])
         }
     } else if (line[0] == 'Edit') {
         if (line[3] == 'Math') {

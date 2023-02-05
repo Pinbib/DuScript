@@ -1,7 +1,7 @@
 {
   "name": "duscript",
-  "version": "0.0.2",
-  "description": "",
+  "version": "0.0.3",
+  "description": "This language was created as an experiment, it is made of shit and sticks, and it is also interpreted in JavaScript.",
   "main": "duScript.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
