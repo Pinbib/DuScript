@@ -49,7 +49,7 @@ for (var i = 0; i < lines.length; i++) {
         } else if (line[3] == 'JSON') {
             var get = line.slice(4).join('');
             var obj = JSON.parse(get);
-            createObject(line[1], data);
+            createObject(line[1], obj);
         } else {
             createVar(line[1], line[3]);
         }
@@ -64,7 +64,7 @@ for (var i = 0; i < lines.length; i++) {
                 }
             }
         } else {
-            console.log(variable[line[r]])
+            console.log(variable[line[1]])
         }
     } else if (line[0] == 'Edit') {
         if (line[3] == 'Math') {
@@ -81,24 +81,9 @@ for (var i = 0; i < lines.length; i++) {
         if (line[1] == 'all') {
             console.log(variable[line[2]].eValue)
         }
-    } else if (line[0] == '//' || 'rem:' || '::' || '(:') {
+    } else if (line[0] == '//' || 'rem:' || '::') {
         createComent(line[0], line.slice(1, line.length));
     } else if (line[0].indexOf('(') != -1) {
-        var newline = lines[i].replace(/^\s+|\s+$/g, "").split(/[\(\)]/);
-        if (newline[0] == 'printl') {
-            var logs = [];
-            var data = newline[1];
-            var data2 = data.split(' ');
-            for (let r = 0; r < data2.length; r++) {
-                if (data2[r] == 'call') {
-                    logs.push(variable[data2[r + 1]]);
-                } else if (data2[r].indexOf('\'') != -1) {
-                    logs.push(data2[r].replace(/['"]+/g, ''))
-                } else if (!variable[data2[r]]) {
-                    logs.push('');
-                }
-            }
-            console.log(logs.join(' '));
-        }
+        console.log('ok')
     }
 }

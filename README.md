@@ -11,7 +11,9 @@ It works similar to YoptaScript , although they only have a similar connection m
 
 #Connection
 
-```<script language="text/duScript">[body]</script><script src="path/to/duScript.js"></script>```
+```<script language="text/duScript">[body]</script>```
+
+```<script src="path/to/duScript.js"></script>```
 
 Then write the code in the first script tag
 
@@ -33,6 +35,21 @@ The creation of an array passes through the command:
 ```approve [name] = Array value;```
 
 The symbol [ and ] also, when listing the values of an array, the symbol "," is not required.
+
+Creating a json object is exactly the same as creating an array, only JSON is used instead of the Array keyword.
+ Example: 
+ 
+ ``` approve msg = JSON {"a": 1}; ```
+
+ ``` approve msg = JSON {```
+
+
+ ``` "a": 1```
+
+
+ ``` };```
+ 
+  But using the character ";" may result in an error.
 
 ##Changing the value of a variable
 
@@ -72,7 +89,24 @@ Variable msg will have the value 4
 
 #Output 
 
-##println()
+ If "call" can only fetch one element, then "get all" fetches everything at once. Example:
 
-```printl(msg msg1 'Hello World' 432);```
+ ``` approve msg = JSON {"a": 1}; ```
 
+ ```get all msg```
+
+ Output:
+
+ ```{"a": 1}```
+
+  ``` approve msg = Array 1 2 3 4 5; ```
+
+ ```get all msg```
+
+ Output:
+
+ ```[1, 2, 3, 4, 5]```
+
+#Comment
+
+ It is possible to create comments in three ways "//", "rem:", "::" note that they are followed by a space.
