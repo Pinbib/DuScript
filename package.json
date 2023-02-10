@@ -1,6 +1,6 @@
 {
   "name": "duscript",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "This language was created as an experiment, it is made of shit and sticks, and it is also interpreted in JavaScript.",
   "main": "duScript.js",
   "scripts": {

@@ -11,7 +11,7 @@ It works similar to YoptaScript , although they only have a similar connection m
 
 #Connection
 
-```<script language="text/duScript">[body]</script>```
+```<script type="text/duScript">[body]</script>```
 
 ```<script src="path/to/duScript.js"></script>```
 
