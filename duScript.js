@@ -25,6 +25,7 @@ function createObject(name, value) {
     variable[name].iValue = 'Obj';
     variable[name].eValue = value;
 }
+
 for (var i = 0; i < document.querySelectorAll('script').length; i++) {
     var script = document.querySelectorAll('script');
     if (script[i].attributes.type.value == 'text/duScript') {
@@ -119,6 +120,7 @@ for (var i = 0; i < lines.length; i++) {
             }
             console.log(log.join(' '));
         } else if (data.command == 'if') {
+            //if
             var command = newLine[2];
             if (data.value) {
                 var lines2 = command.replace(/[{}]/gm, '').split(/[:]$/gm);
@@ -211,6 +213,7 @@ for (var i = 0; i < lines.length; i++) {
                     }
                 }
             }
+            //if
         }
     } else if (line[0] == '//' || 'rem:' || '::') {
         createComent(line[0], line.slice(1, line.length));
