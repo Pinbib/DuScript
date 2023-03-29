@@ -1,8 +1,21 @@
 var scripts;
 var variable = {};
+var func = {};
 var coment = {
     "index": 0
 };
+var regex = {
+    "number": /[0-9]/gm,
+    "letters": /\w/gm,
+    "spec": /[^A-Za-z0-9]+/gm
+}
+function createFunc(name, arg, body) {
+    func[name] = {};
+    func[name].arg = arg;
+    func[name].body = [];
+
+
+}
 function createComent(type, value) {
     coment['comment' + coment.index] = {};
     coment['comment' + coment.index].type = type;
@@ -25,7 +38,6 @@ function createObject(name, value) {
     variable[name].iValue = 'Obj';
     variable[name].eValue = value;
 }
-
 for (var i = 0; i < document.querySelectorAll('script').length; i++) {
     var script = document.querySelectorAll('script');
     if (script[i].attributes.type.value == 'text/duScript') {
@@ -38,7 +50,7 @@ var lines = scripts.split(';');
 
 for (var i = 0; i < lines.length; i++) {
     let line = lines[i].replace(/^\s+|\s+$/g, "").split(' ');
-
+    console.log(line);
     if (line[0] == 'approve') {
         if (line.length == 2) {
             createVar(line[1], 'void');
@@ -103,7 +115,7 @@ for (var i = 0; i < lines.length; i++) {
         if (line[1] == 'all') {
             console.log(variable[line[2]].eValue);
         }
-    } else if (line[0].indexOf('(') != -1) {
+    } /*declare*/ else if (line[0].indexOf('(') != -1) {
         var newLine = line.join(' ').split(/[()]/gm);
         var data = {
             "command": newLine[0],
@@ -122,12 +134,19 @@ for (var i = 0; i < lines.length; i++) {
         } else if (data.command == 'if') {
             //if
             var command = newLine[2];
-            if (data.value) {
+            var conditions = [];
+            var rs = data.value;
+            for (var g = 0; g < rs.length; g++) {
+                if (typeof variable[rs[g]] !== 'undefined') {
+                    conditions.push(variable[rs[g]]);
+                } else {
+                    conditions.push(rs[g])
+                }
+            }
+            if (Boolean(eval(conditions.join('')))) {
                 var lines2 = command.replace(/[{}]/gm, '').split(/[:]$/gm);
-                console.log(lines2[0].replace(/^\s+|\s+$/g, ""));
                 for (var r = 0; r < lines2.length; r++) {
                     var line2 = lines2[r].replace(/^\s+/gm, '').split(' ');
-
 
                     if (line2[0] == 'approve') {
                         if (line2.length == 2) {
