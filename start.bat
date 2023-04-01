@@ -1,3 +1,3 @@
 @echo off
-set \p "src=Src:"
+set /p src= path  
 node duScript %src%
