@@ -125,3 +125,163 @@ Sample:
     approve [name] = ! 0;
 
 Will: :)
+
+## call
+
+call - calls a variable or function
+
+Sample:
+
+    call [call-type] [type] [name];
+
+The call-type parameter indicates what is being called, there are two types of call:
+- variable
+- function
+
+The type parameter is only needed if the call-type is "variable" , there are five types in total:
+- v
+
+v - used when displaying text and numbers
+
+Sample:
+
+    approve msg = String string;
+    call variable v msg;
+    approve msg1 = Int 12;
+    call variable v msg1;
+
+Will: string
+Will: 12
+
+- Array
+
+Array - for outputting arrays
+
+Sample:
+
+    approve msg = Array [1,2,3];
+    call variable Array msg 1;
+
+Will: 2
+
+- Object
+
+Object - to display an object
+
+Sample:
+
+    approve msg = Object {
+        "a": 1
+    };
+    call variable Object msg.a;
+
+Will: 1
+
+- @
+
+@ - reference to the global variable object
+
+Sample:
+
+    approve msg = Int 1;
+    call variable @;
+
+Will: { msg: 1 }
+
+- !
+
+! - access to the global object comment
+
+Sample: 
+
+    // :)
+    call variable !;
+
+Will: :)
+
+If the call-type is specified as "function" then the type parameter is not needed
+
+## printl
+
+print - prints anything specified in () everything works as in variables with type "As"
+
+Sample:
+
+    approve msg = Int 1;
+    printl ("msg: "+@msg);
+
+Will: msg: 1
+
+Space before () is required
+## if
+
+if - from the name it is clear
+
+Splitting lines inside the "if" block is carried out through the symbol "^"
+
+Space before () is required
+
+Sample:
+
+    approve msg = Int 1;
+    if (@msg==1){
+        call variable v msg^
+    };
+
+Will: 1
+
+## //
+
+// - used to create comments after the command requires a space
+
+# Manifest
+To run several files and connect between them, when specifying the src, you do not need to specify the path to the desired file, but you need to specify the path to the folder with the files and at the end you must add "/" and the specified folder should contain the file Door.json.
+
+Sample file Door.json:
+```
+{
+    "call": [
+        "1.du",
+        "2.du"
+    ]
+}
+```
+
+An array of executable files is placed in the call
+
+1.du:
+
+    approve msg = Int 1;
+
+2.du:
+
+    printl (@msg);
+
+Will: 1
+
+You can also close access to variables and comments from other files with the "clear" command, here is an example:
+
+Door.json:
+```
+{
+    "call": [
+        "1.du",
+        "clear",
+        "2.du"
+    ]
+}
+```
+
+An array of executable files is placed in the call
+
+1.du:
+
+    approve msg = Int 1;
+
+2.du:
+
+    printl (@msg);
+
+Will:  
+
+The "clear" command completely clears the global objects variable , comment.

@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Pinbib/DuScript/issues"
   },
-  "homepage": "https://github.com/Pinbib/DuScript#readme"
+  "homepage": "https://github.com/Pinbib/DuScript#readme",
+  "dependencies": {
+    "async-prompt": "^1.0.1"
+  }
 }
