@@ -10,7 +10,16 @@ This language was created as an experiment, it is made of shit and sticks, and i
 
 # Install 
 
-```npm install duscript```
+I recommend installing the package globally using the command:
+
+```npm install -g duscript```
+
+Next, to find out where the package was installed, use the command:
+
+```npm list -g duscript --depth=0 -p```
+
+Next, we can create a shortcut to the start.bat file, which is located in the folder obtained above by the command.
+Now we can run just by clicking on the shortcut.
 
 # Start
 
@@ -224,11 +233,26 @@ Space before () is required
 Sample:
 
     approve msg = Int 1;
-    if (@msg==1){
+    if (@msg==1) {
         call variable v msg^
     };
 
 Will: 1
+
+## while
+
+while - a loop that checks the condition before each execution, and line breaking occurs through "&^" in the if block there cannot be a cycle, but in the while loop, the if block can be and if there is an if block in the while, line breaking occurs as usual through " ^".
+
+Sample:
+
+    while (1==1) {
+        printl (1)&^
+        if (2==1) {
+            printl (2)^
+        }&^
+    };
+
+Will: 11111111111111111111111111111111111++
 
 ## //
 
