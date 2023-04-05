@@ -20,6 +20,11 @@ Next, to find out where the package was installed, use the command:
 
 Next, we can create a shortcut to the start.bat file, which is located in the folder obtained above by the command.
 Now we can run just by clicking on the shortcut.
+Before the first launch and after the update, run the install.bat file
+
+Update: 
+
+```npm update -g duscript```
 
 # Start
 
@@ -254,6 +259,19 @@ Sample:
 
 Will: 11111111111111111111111111111111111++
 
+## declare
+
+declare - used to create functions splitting occurs through "*^".
+
+Sample: 
+
+    declare function test {
+        printl (1)*^
+    };
+    call function test;
+
+Will: 1
+
 ## //
 
 // - used to create comments after the command requires a space
@@ -309,3 +327,79 @@ An array of executable files is placed in the call
 Will:  
 
 The "clear" command completely clears the global objects variable , comment.
+
+## Module
+
+Modules are imported by adding a "module" block to the Door.json file.
+
+Sample:
+
+```
+"module": [
+        {
+            "name": "fs",
+            "from": "#fs"
+        }
+    ]
+```
+
+The "module" block is an array of objects, each module is a new object, to import built-in modules such as fs, use the "#" symbol and then the module name, the "name" field indicates the command to which the interpreter will respond, and the "from" field then where the module will be imported from.
+
+After importing the module in Door.json, you need to confirm the import in the file in the following way:
+
+    father fs true;
+
+You can also disable imports:
+
+    father fs false;
+
+The module is created using JavaScript and the module must be located in the folder that is being launched. Let's try to create a module that will create a variable and output it and then delete it:
+
+Let's create a file cld.js (c - creat, l - log, d - deleat)
+
+Import it into the Door.json file.
+
+Door.json:
+```
+{
+    "call": [
+        "a.du"
+    ],
+    "module": [
+        {
+            "name": "cld",
+            "from": "./cld.js"
+        }
+    ]
+}
+```
+
+Let's create the module itself in the cld.js file.
+
+cld.js:
+```
+module.exports = (body, mainpath, door, variable, comment, declare, tool) => {
+    const { Variable } = require(tool);
+    var data = body.split(" ");
+    Variable.set(variable, data[1], data[2]);
+    console.log(Variable.get(variable, data[1]));
+    Variable.delete(variable, data[2]);
+};
+```
+
+We are exporting an anonymous function that is anonymous, it should contain the parameters body, mainpath, door, variable, comment, declare, tool in the body is placed the line in which the command was found, in the mainpath is the path to the executable folder, in the door is the file Door.json , in variable all variables, in comment all comments, in declare all creation of a function, in tool the path to the auxiliary module is placed.
+
+We import the Variable helper class to make dealing with variables easier. Then we split the string by spaces. We create a variable using the Variable.set class method and pass the name and value of the variable to it. We get the desired variable through the get method from the Variable class, pass variable and the name of the desired variable to the parameters, and then display it. We delete through the delete method in the parameters we pass variable and the name of the desired variable.
+
+a.du:
+
+    father cld true;
+    cld msg 12;
+
+Will: 12
+
+We allow the import of the module, and then we make the call.
+
+## Built-in modules
+
+Will be completed soon
