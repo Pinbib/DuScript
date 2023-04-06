@@ -1,6 +1,6 @@
 {
   "name": "duscript",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "This language was created as an experiment, it is made of shit and sticks, and it is also interpreted in JavaScript.",
   "main": "duScript.js",
   "scripts": {
@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Pinbib/DuScript#readme",
   "dependencies": {
-    "async-prompt": "^1.0.1"
+    "async-prompt": "^1.0.1",
+    "sync-request": "^6.1.0"
   }
 }
