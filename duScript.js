@@ -897,10 +897,31 @@ if (!/\\$/gm.test(mainpath)) {
                             case "//":
                                 comment.push(line.slice(1).join(" "));
                                 break;
+                            case "father":
+                                if (typeof module[line[1]] !== undefined) {
+                                    if (line[2] == "true") {
+                                        module[line[1]].request = Boolean(line[2]);
+                                    } else {
+                                        module[line[1]].request = false;
+                                    }
+
+                                } else {
+                                    console.error(line[1]`: Module not found`);
+                                }
+                                break;
                             case "":
                                 break;
                             default:
-                                console.error(line[0] + `: Not registered command`);
+                                if (typeof module[line[0]] !== undefined) {
+                                    let th = module[line[0]];
+                                    if (th.request) {
+                                        th.main(line.join(" ").replace(/^\{|\}$/gm, ""), mainpath, door, variable, comment, declare, path.join(__dirname, "tools.js"));
+                                    } else {
+                                        console.error(line[0] + `: The module has not been validated`)
+                                    }
+                                } else {
+                                    console.error(line[0] + `: Not registered command`);
+                                }
                                 break;
                         }
                     }
@@ -1018,10 +1039,31 @@ if (!/\\$/gm.test(mainpath)) {
                             case "//":
                                 comment.push(line.slice(1).join(" "));
                                 break;
+                            case "father":
+                                if (typeof module[line[1]] !== undefined) {
+                                    if (line[2] == "true") {
+                                        module[line[1]].request = Boolean(line[2]);
+                                    } else {
+                                        module[line[1]].request = false;
+                                    }
+
+                                } else {
+                                    console.error(line[1]`: Module not found`);
+                                }
+                                break;
                             case "":
                                 break;
                             default:
-                                console.error(line[0] + `: Not registered command`);
+                                if (typeof module[line[0]] !== undefined) {
+                                    let th = module[line[0]];
+                                    if (th.request) {
+                                        th.main(line.join(" ").replace(/^\{|\}$/gm, ""), mainpath, door, variable, comment, declare, path.join(__dirname, "tools.js"));
+                                    } else {
+                                        console.error(line[0] + `: The module has not been validated`)
+                                    }
+                                } else {
+                                    console.error(line[0] + `: Not registered command`);
+                                }
                                 break;
                         }
                     }
@@ -1135,10 +1177,31 @@ if (!/\\$/gm.test(mainpath)) {
                                 case "//":
                                     comment.push(line.slice(1).join(" "));
                                     break;
+                                case "father":
+                                    if (typeof module[line[1]] !== undefined) {
+                                        if (line[2] == "true") {
+                                            module[line[1]].request = Boolean(line[2]);
+                                        } else {
+                                            module[line[1]].request = false;
+                                        }
+
+                                    } else {
+                                        console.error(line[1]`: Module not found`);
+                                    }
+                                    break;
                                 case "":
                                     break;
                                 default:
-                                    console.error(line[0] + `: Not registered command`);
+                                    if (typeof module[line[0]] !== undefined) {
+                                        let th = module[line[0]];
+                                        if (th.request) {
+                                            th.main(line.join(" ").replace(/^\{|\}$/gm, ""), mainpath, door, variable, comment, declare, path.join(__dirname, "tools.js"));
+                                        } else {
+                                            console.error(line[0] + `: The module has not been validated`)
+                                        }
+                                    } else {
+                                        console.error(line[0] + `: Not registered command`);
+                                    }
                                     break;
                             }
                         }
@@ -1256,10 +1319,31 @@ if (!/\\$/gm.test(mainpath)) {
                                 case "//":
                                     comment.push(line.slice(1).join(" "));
                                     break;
+                                case "father":
+                                    if (typeof module[line[1]] !== undefined) {
+                                        if (line[2] == "true") {
+                                            module[line[1]].request = Boolean(line[2]);
+                                        } else {
+                                            module[line[1]].request = false;
+                                        }
+
+                                    } else {
+                                        console.error(line[1]`: Module not found`);
+                                    }
+                                    break;
                                 case "":
                                     break;
                                 default:
-                                    console.error(line[0] + `: Not registered command`);
+                                    if (typeof module[line[0]] !== undefined) {
+                                        let th = module[line[0]];
+                                        if (th.request) {
+                                            th.main(line.join(" ").replace(/^\{|\}$/gm, ""), mainpath, door, variable, comment, declare, path.join(__dirname, "tools.js"));
+                                        } else {
+                                            console.error(line[0] + `: The module has not been validated`)
+                                        }
+                                    } else {
+                                        console.error(line[0] + `: Not registered command`);
+                                    }
                                     break;
                             }
                         }
@@ -1385,10 +1469,31 @@ if (!/\\$/gm.test(mainpath)) {
                             case "//":
                                 comment.push(line.slice(1).join(" "));
                                 break;
+                            case "father":
+                                if (typeof module[line[1]] !== undefined) {
+                                    if (line[2] == "true") {
+                                        module[line[1]].request = Boolean(line[2]);
+                                    } else {
+                                        module[line[1]].request = false;
+                                    }
+
+                                } else {
+                                    console.error(line[1]`: Module not found`);
+                                }
+                                break;
                             case "":
                                 break;
                             default:
-                                console.error(line[0] + `: Not registered command`);
+                                if (typeof module[line[0]] !== undefined) {
+                                    let th = module[line[0]];
+                                    if (th && th.request) {
+                                        th.main(line.join(" ").replace(/^\{|\}$/gm, ""), mainpath, door, variable, comment, declare, path.join(__dirname, "tools.js"));
+                                    } else {
+                                        console.error(line[0] + `: The module has not been validated`)
+                                    }
+                                } else {
+                                    console.error(line[0] + `: Not registered command`);
+                                }
                                 break;
                         }
                         for (var i = 0; i < varlist.length; i++) {
