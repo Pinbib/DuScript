@@ -1,7 +1,7 @@
 {
   "name": "duscript",
   "version": "0.1.8",
-  "description": "This language was created as an experiment, it is made of shit and sticks, and it is also interpreted in JavaScript.",
+  "description": "The purpose of creating this language was an experiment to find out their strength. The peculiarity of this language is the modules unlimited by syntax.",
   "main": "duScript.js",
   "scripts": {},
   "repository": {
@@ -18,5 +18,14 @@
     "async-prompt": "^1.0.1",
     "prompt-sync": "^4.2.0",
     "sync-request": "^6.1.0"
-  }
+  },
+  "keywords": [
+    "language",
+    "programming-language",
+    "interpreter",
+    "du",
+    "duScript",
+    "DuScript",
+    "duscript"
+  ]
 }

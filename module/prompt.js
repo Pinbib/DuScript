@@ -3,7 +3,7 @@ module.exports = (body, mainpath, door, variable, comment, declare, tool) => {
     const { Variable, Formation } = require(tool);
     let data = body.split(" ");
     switch (data[1]) {
-        case "readline":
+        case "line":
             if (true) {
                 Variable.set(variable, data[2], prompt(
                     Formation.var(
