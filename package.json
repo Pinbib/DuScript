@@ -3,9 +3,7 @@
   "version": "0.1.6",
   "description": "This language was created as an experiment, it is made of shit and sticks, and it is also interpreted in JavaScript.",
   "main": "duScript.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Pinbib/DuScript.git"
@@ -18,6 +16,7 @@
   "homepage": "https://github.com/Pinbib/DuScript#readme",
   "dependencies": {
     "async-prompt": "^1.0.1",
+    "prompt-sync": "^4.2.0",
     "sync-request": "^6.1.0"
   }
 }
