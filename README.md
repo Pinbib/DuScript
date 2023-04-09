@@ -1,8 +1,8 @@
 # DuScript
 
-<img src="duScript.ico" width="500px">
+<img src="duScript.ico" width="500px" height="500px">
 
-This language was created as an experiment, it is made of shit and sticks, and it is also interpreted in JavaScript.
+The purpose of creating this language was an experiment to find out their strength. The peculiarity of this language is the modules unlimited by syntax.
 
 [GitHub](https://github.com/Pinbib/DuScript)
 
@@ -217,7 +217,11 @@ If the call-type is specified as "function" then the type parameter is not neede
 
 ## printl
 
-print - prints anything specified in () everything works as in variables with type "As"
+printl - prints anything specified in () everything works as in variables with type "As"
+
+```
+printl ([body])
+```
 
 Sample:
 
@@ -235,6 +239,12 @@ Splitting lines inside the "if" block is carried out through the symbol "^"
 
 Space before () is required
 
+```
+if ([condition]) { 
+    [body]^
+};
+```
+
 Sample:
 
     approve msg = Int 1;
@@ -247,6 +257,12 @@ Will: 1
 ## while
 
 while - a loop that checks the condition before each execution, and line breaking occurs through "&^" in the if block there cannot be a cycle, but in the while loop, the if block can be and if there is an if block in the while, line breaking occurs as usual through " ^".
+
+```
+while ([condition]) { 
+    [body]&^
+};
+```
 
 Sample:
 
@@ -262,6 +278,12 @@ Will: 11111111111111111111111111111111111++
 ## declare
 
 declare - used to create functions splitting occurs through "*^".
+
+``` 
+declare [declare-type] [name] { 
+    [body]*^
+}
+```
 
 Sample: 
 
@@ -402,4 +424,70 @@ We allow the import of the module, and then we make the call.
 
 ## Built-in modules
 
-Will be completed soon
+## fs
+
+fs - is a module for manipulating the file system.
+
+fs has 4 commands writeFile , readFile , writeDir , readDir.
+
+- writeFile
+    
+writeFile - used to create files.
+
+```fs writeFile [src] [data];```
+
+Sample:
+
+    father fs true;
+    fs writeFile ./text.txt text;
+
+Will: a text.txt file will be created with text inside "text"
+
+- readFile
+
+readFile - used to read files
+
+```fs readFile [src] [variable];```
+
+src - is the path to the readable file.
+
+variable - this is where the result of reading the file will be savedю.
+
+Sample:
+
+    father fs true;
+    fs readFile ./text.txt msg;
+    printl (@msg);
+
+Will: text
+
+-writeDir
+    
+writeDir - used to create directory files.
+
+```fs writeDir [src];```
+
+Sample:
+
+       father fs true;
+       fs writeDir ./text;
+
+To be: the "text" directory will be created
+
+-readDir
+
+readDir - used to read directories
+
+```fs readDir [src] [variable];```
+
+src - is the path to the readable file.
+
+variable - the result of reading the file will be stored here.
+
+sample:
+
+       father fs true;
+       fs readDir ./ msg;
+       printl (@msg);
+
+Will: [1.du, text.txt]
