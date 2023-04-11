@@ -1,4 +1,4 @@
-module.exports = (body, mainpath, door, variable, comment, declare, tool) => {
+module.exports = (body, mainpath, door, variable, comment, declare, modul, global, tool) => {
     const prompt = require("prompt-sync")({ sigint: true });
     const { Variable, Formation } = require(tool);
     let data = body.split(" ");

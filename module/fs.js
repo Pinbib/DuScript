@@ -1,4 +1,4 @@
-module.exports = (body, mainpath, door, variable, comment, declare, tool) => {
+module.exports = (body, mainpath, door, variable, comment, declare, modul, global, tool) => {
     const fs = require("fs");
     const path = require("path")
     const { Variable } = require(tool);

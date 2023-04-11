@@ -781,6 +781,7 @@ if (!/\\$/gm.test(mainpath)) {
         let module = {};
         let m_declare = {};
         let data_type = {};
+        let global = {};
 
         if (typeof door.module !== "undefined") {
             for (var v = 0; v < door.module.length; v++) {
@@ -858,7 +859,7 @@ if (!/\\$/gm.test(mainpath)) {
                                             if (typeof data_type[type] !== "undefined") {
                                                 let th = data_type[type];
                                                 if (th.request) {
-                                                    createVar(name, th.main(line.join(" ").replace(/^\{|\}$/gm, ""), mainpath, door, variable, comment, declare, path.join(__dirname, "tools.js")));
+                                                    createVar(name, th.main(line.join(" ").replace(/^\{|\}$/gm, ""), mainpath, door, variable, comment, declare, module, global, path.join(__dirname, "tools.js")));
                                                 } else {
                                                     console.error(type + `: Modular type has not been confirmed`)
                                                 }
@@ -951,7 +952,7 @@ if (!/\\$/gm.test(mainpath)) {
                                     if (typeof module[line[0]] !== "undefined") {
                                         let th = module[line[0]];
                                         if (th.request) {
-                                            th.main(line.join(" ").replace(/^\{|\}$/gm, ""), mainpath, door, variable, comment, declare, path.join(__dirname, "tools.js"));
+                                            th.main(line.join(" ").replace(/^\{|\}$/gm, ""), mainpath, door, variable, comment, declare, module, global, path.join(__dirname, "tools.js"));
                                         } else {
                                             console.error(line[0] + `: The module has not been validated`)
                                         }
@@ -1017,7 +1018,7 @@ if (!/\\$/gm.test(mainpath)) {
                                             if (typeof data_type[type] !== "undefined") {
                                                 let th = data_type[type];
                                                 if (th.request) {
-                                                    createVar(name, th.main(line.join(" ").replace(/^\{|\}$/gm, ""), mainpath, door, variable, comment, declare, path.join(__dirname, "tools.js")));
+                                                    createVar(name, th.main(line.join(" ").replace(/^\{|\}$/gm, ""), mainpath, door, variable, comment, declare, module, global, path.join(__dirname, "tools.js")));
                                                 } else {
                                                     console.error(type + `: Modular type has not been confirmed`)
                                                 }
@@ -1116,7 +1117,7 @@ if (!/\\$/gm.test(mainpath)) {
                                     if (typeof module[line[0]] !== undefined) {
                                         let th = module[line[0]];
                                         if (th.request) {
-                                            th.main(line.join(" ").replace(/^\{|\}$/gm, ""), mainpath, door, variable, comment, declare, path.join(__dirname, "tools.js"));
+                                            th.main(line.join(" ").replace(/^\{|\}$/gm, ""), mainpath, door, variable, comment, declare, module, global, path.join(__dirname, "tools.js"));
                                         } else {
                                             console.error(line[0] + `: The module has not been validated`)
                                         }
@@ -1184,7 +1185,7 @@ if (!/\\$/gm.test(mainpath)) {
                                                 if (typeof data_type[type] !== "undefined") {
                                                     let th = data_type[type];
                                                     if (th.request) {
-                                                        createVar(name, th.main(line.join(" ").replace(/^\{|\}$/gm, ""), mainpath, door, variable, comment, declare, path.join(__dirname, "tools.js")));
+                                                        createVar(name, th.main(line.join(" ").replace(/^\{|\}$/gm, ""), mainpath, door, variable, comment, declare, module, global, path.join(__dirname, "tools.js")));
                                                     } else {
                                                         console.error(type + `: Modular type has not been confirmed`)
                                                     }
@@ -1278,7 +1279,7 @@ if (!/\\$/gm.test(mainpath)) {
                                         if (typeof module[line[0]] !== undefined) {
                                             let th = module[line[0]];
                                             if (th.request) {
-                                                th.main(line.join(" ").replace(/^\{|\}$/gm, ""), mainpath, door, variable, comment, declare, path.join(__dirname, "tools.js"));
+                                                th.main(line.join(" ").replace(/^\{|\}$/gm, ""), mainpath, door, variable, comment, declare, module, global, path.join(__dirname, "tools.js"));
                                             } else {
                                                 console.error(line[0] + `: The module has not been validated`)
                                             }
@@ -1344,7 +1345,7 @@ if (!/\\$/gm.test(mainpath)) {
                                                 if (typeof data_type[type] !== "undefined") {
                                                     let th = data_type[type];
                                                     if (th.request) {
-                                                        createVar(name, th.main(line.join(" ").replace(/^\{|\}$/gm, ""), mainpath, door, variable, comment, declare, path.join(__dirname, "tools.js")));
+                                                        createVar(name, th.main(line.join(" ").replace(/^\{|\}$/gm, ""), mainpath, door, variable, comment, declare, module, global, path.join(__dirname, "tools.js")));
                                                     } else {
                                                         console.error(type + `: Modular type has not been confirmed`)
                                                     }
@@ -1444,7 +1445,7 @@ if (!/\\$/gm.test(mainpath)) {
                                         if (typeof module[line[0]] !== undefined) {
                                             let th = module[line[0]];
                                             if (th.request) {
-                                                th.main(line.join(" ").replace(/^\{|\}$/gm, ""), mainpath, door, variable, comment, declare, path.join(__dirname, "tools.js"));
+                                                th.main(line.join(" ").replace(/^\{|\}$/gm, ""), mainpath, door, variable, comment, declare, module, global, path.join(__dirname, "tools.js"));
                                             } else {
                                                 console.error(line[0] + `: The module has not been validated`)
                                             }
@@ -1508,7 +1509,7 @@ if (!/\\$/gm.test(mainpath)) {
                                             if (typeof data_type[type] !== "undefined") {
                                                 let th = data_type[type];
                                                 if (th.request) {
-                                                    createVar(name, th.main(line.join(" ").replace(/^\{|\}$/gm, ""), mainpath, door, variable, comment, declare, path.join(__dirname, "tools.js")));
+                                                    createVar(name, th.main(line.join(" ").replace(/^\{|\}$/gm, ""), mainpath, door, variable, comment, declare, module, global, path.join(__dirname, "tools.js")));
                                                 } else {
                                                     console.error(type + `: Modular type has not been confirmed`)
                                                 }
@@ -1618,7 +1619,7 @@ if (!/\\$/gm.test(mainpath)) {
                                     if (typeof module[line[0]] !== undefined) {
                                         let th = module[line[0]];
                                         if (th && th.request) {
-                                            th.main(line.join(" ").replace(/^\{|\}$/gm, ""), mainpath, door, variable, comment, declare, path.join(__dirname, "tools.js"));
+                                            th.main(line.join(" ").replace(/^\{|\}$/gm, ""), mainpath, door, variable, comment, declare, module, global, path.join(__dirname, "tools.js"));
                                         } else {
                                             console.error(line[0] + `: The module has not been validated`)
                                         }
@@ -1681,7 +1682,7 @@ if (!/\\$/gm.test(mainpath)) {
                                         if (typeof data_type[type] !== "undefined") {
                                             let th = data_type[type];
                                             if (th.request) {
-                                                createVar(name, th.main(line.join(" ").replace(/^\{|\}$/gm, ""), mainpath, door, variable, comment, declare, path.join(__dirname, "tools.js")));
+                                                createVar(name, th.main(line.join(" ").replace(/^\{|\}$/gm, ""), mainpath, door, variable, comment, declare, module, global, path.join(__dirname, "tools.js")));
                                             } else {
                                                 console.error(type + `: Modular type has not been confirmed`)
                                             }
@@ -1810,7 +1811,7 @@ if (!/\\$/gm.test(mainpath)) {
                                 if (typeof module[line[0]] !== "undefined") {
                                     let th = module[line[0]];
                                     if (th.request) {
-                                        th.main(line.join(" ").replace(/^\{|\}$/gm, ""), mainpath, door, variable, comment, declare, path.join(__dirname, "tools.js"));
+                                        th.main(line.join(" ").replace(/^\{|\}$/gm, ""), mainpath, door, variable, comment, declare, module, global, path.join(__dirname, "tools.js"));
                                     } else {
                                         console.error(line[0] + `: The module has not been validated`)
                                     }

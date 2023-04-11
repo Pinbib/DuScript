@@ -1,6 +1,5 @@
-const request = require("sync-request");
-
-module.exports = (body, mainpath, door, variable, comment, declare, tool) => {
+module.exports = (body, mainpath, door, variable, comment, declare, modul, global, tool) => {
+    const request = require("sync-request");
     const { Variable } = require(tool);
     var data = body.split(" ");
 
