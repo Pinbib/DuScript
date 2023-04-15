@@ -2,7 +2,7 @@ module.exports = (body, mainpath, door, variable, comment, declare, modul, globa
     const { Variable, Formation } = require(tool);
     var data = body.split(" ");
 
-    function reandom(max) {
+    function random(max) {
         let rs = Math.ceil(Math.random() * max);
         return rs;
     }
@@ -10,8 +10,20 @@ module.exports = (body, mainpath, door, variable, comment, declare, modul, globa
     switch (data[1]) {
         case "Int":
             Variable.set(variable, data[2],
-                reandom(parseInt(Formation.var(variable, data[3])))
+                random(
+                    parseInt(
+                        Formation.var(
+                            variable, data[3]
+                        )
+                    )
+                )
             );
+            break;
+        case "from":
+            var dat = Formation.var(
+                variable, data[2]
+            ).split(",");
+            Variable.set(variable, data[3], dat[random(dat.length - 1)])
             break;
     }
 };

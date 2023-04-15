@@ -12,10 +12,9 @@ module.exports = (body, mainpath, door, variable, comment, declare, modul, globa
                     end[sample[i]] = body[i + 1];
                 }
                 return end;
-
             }
         };
-    }
+    };
 
     let name = data[1];
     let bod = data.slice(2).join(" ").replace(/^\(|\)$/gm, "").replace(/\,/gm, " ").split(" ");

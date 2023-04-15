@@ -13,7 +13,6 @@ module.exports = (body, mainpath, door, variable, comment, declare, modul, globa
                     )
                 )
             );
-            console.log(value)
             Variable.set(variable, data[2], value);
             break;
     }
