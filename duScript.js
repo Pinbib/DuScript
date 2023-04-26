@@ -802,6 +802,7 @@ if (!/\\$/gm.test(mainpath)) {
                     data_type[door.dataType[v].name] = { main: require(path.join(mainpath, door.dataType[v].from)), request: false };
                 }
             }
+            global.data_type = data_type;
         };
         for (var cl = 0; cl < door.call.length; cl++) {
             if (/\.du$/gm.test(door.call[cl])) {
