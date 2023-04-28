@@ -400,7 +400,7 @@ Let's create the module itself in the cld.js file.
 
 cld.js:
 ```
-module.exports = (body, mainpath, door, variable, comment, declare, tool) => {
+module.exports = (body, mainpath, door, variable, comment, declare, modul, global, tool) => {
     const { Variable } = require(tool);
     var data = body.split(" ");
     Variable.set(variable, data[1], data[2]);
