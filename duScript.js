@@ -835,7 +835,35 @@ if (!/\\$/gm.test(mainpath)) {
             }
             global.brother = brother;
         };
-        log(brother)
+        if (typeof door.sister !== "undefined") {
+            for (var v = 0; v < door.sister.length; v++) {
+                let sis = door.sister[v];
+
+                if (typeof sis.name !== "undefined") {
+                    if (typeof sis.member !== "undefined") {
+                        if (sis.member.length > 0) {
+                            let members = [];
+
+                            for (var r = 0; r < sis.member.length; r++) {
+                                if (typeof data_type[sis.member[r]] !== "undefined") {
+                                    members.push(sis.member[r]);
+                                } else {
+                                    Console.error(`Sister ${v}: module "${sis.member[r]}" was not found in dataType object`)
+                                }
+                            }
+                            sister[sis.name] = members;
+                        } else {
+                            console.error(`Sister ${v}: a sister cannot have no element in an object.`)
+                        }
+                    } else {
+                        console.error(`Sister ${v}: the sister object must have a member field`);
+                    }
+                } else {
+                    Console.error(`Sister ${v}: must have a name field`);
+                }
+            }
+            global.sister = sister;
+        }
         for (var cl = 0; cl < door.call.length; cl++) {
             if (/\.du$/gm.test(door.call[cl])) {
                 if (fs.existsSync(path.join(mainpath + door.call[cl]))) {
@@ -994,6 +1022,23 @@ if (!/\\$/gm.test(mainpath)) {
                                         }
                                     } else {
                                         console.error(line[1] + `: brother not found`);
+                                    }
+                                    break;
+                                case "sister":
+                                    if (typeof sister[line[1]] !== "undefined") {
+                                        var sis = sister[line[1]];
+
+                                        for (var fr = 0; fr < sis.length; fr++) {
+                                            if (line[2] == "true") {
+                                                data_type[sis[fr]].request = true;
+                                            } else if (line[2] == "false") {
+                                                data_type[sis[fr]].request = false;
+                                            } else {
+                                                console.error(line[2] + `: must be true or false`);
+                                            };
+                                        }
+                                    } else {
+                                        console.error(line[1] + `: sister not found`);
                                     }
                                     break;
                                 case "":
@@ -1178,6 +1223,23 @@ if (!/\\$/gm.test(mainpath)) {
                                         console.error(line[1] + `: brother not found`);
                                     }
                                     break;
+                                case "sister":
+                                    if (typeof sister[line[1]] !== "undefined") {
+                                        var sis = sister[line[1]];
+
+                                        for (var fr = 0; fr < sis.length; fr++) {
+                                            if (line[2] == "true") {
+                                                data_type[sis[fr]].request = true;
+                                            } else if (line[2] == "false") {
+                                                data_type[sis[fr]].request = false;
+                                            } else {
+                                                console.error(line[2] + `: must be true or false`);
+                                            };
+                                        }
+                                    } else {
+                                        console.error(line[1] + `: sister not found`);
+                                    }
+                                    break;
                                 case "":
                                     break;
                                 default:
@@ -1355,6 +1417,23 @@ if (!/\\$/gm.test(mainpath)) {
                                             }
                                         } else {
                                             console.error(line[1] + `: brother not found`);
+                                        }
+                                        break;
+                                    case "sister":
+                                        if (typeof sister[line[1]] !== "undefined") {
+                                            var sis = sister[line[1]];
+
+                                            for (var fr = 0; fr < sis.length; fr++) {
+                                                if (line[2] == "true") {
+                                                    data_type[sis[fr]].request = true;
+                                                } else if (line[2] == "false") {
+                                                    data_type[sis[fr]].request = false;
+                                                } else {
+                                                    console.error(line[2] + `: must be true or false`);
+                                                };
+                                            }
+                                        } else {
+                                            console.error(line[1] + `: sister not found`);
                                         }
                                         break;
                                     case "":
@@ -1538,6 +1617,23 @@ if (!/\\$/gm.test(mainpath)) {
                                             }
                                         } else {
                                             console.error(line[1] + `: brother not found`);
+                                        }
+                                        break;
+                                    case "sister":
+                                        if (typeof sister[line[1]] !== "undefined") {
+                                            var sis = sister[line[1]];
+
+                                            for (var fr = 0; fr < sis.length; fr++) {
+                                                if (line[2] == "true") {
+                                                    data_type[sis[fr]].request = true;
+                                                } else if (line[2] == "false") {
+                                                    data_type[sis[fr]].request = false;
+                                                } else {
+                                                    console.error(line[2] + `: must be true or false`);
+                                                };
+                                            }
+                                        } else {
+                                            console.error(line[1] + `: sister not found`);
                                         }
                                         break;
                                     case "":
@@ -1729,6 +1825,23 @@ if (!/\\$/gm.test(mainpath)) {
                                         }
                                     } else {
                                         console.error(line[1] + `: brother not found`);
+                                    }
+                                    break;
+                                case "sister":
+                                    if (typeof sister[line[1]] !== "undefined") {
+                                        var sis = sister[line[1]];
+
+                                        for (var fr = 0; fr < sis.length; fr++) {
+                                            if (line[2] == "true") {
+                                                data_type[sis[fr]].request = true;
+                                            } else if (line[2] == "false") {
+                                                data_type[sis[fr]].request = false;
+                                            } else {
+                                                console.error(line[2] + `: must be true or false`);
+                                            };
+                                        }
+                                    } else {
+                                        console.error(line[1] + `: sister not found`);
                                     }
                                     break;
                                 case "":
@@ -1938,6 +2051,23 @@ if (!/\\$/gm.test(mainpath)) {
                                     }
                                 } else {
                                     console.error(line[1] + `: brother not found`);
+                                }
+                                break;
+                            case "sister":
+                                if (typeof sister[line[1]] !== "undefined") {
+                                    var sis = sister[line[1]];
+
+                                    for (var fr = 0; fr < sis.length; fr++) {
+                                        if (line[2] == "true") {
+                                            data_type[sis[fr]].request = true;
+                                        } else if (line[2] == "false") {
+                                            data_type[sis[fr]].request = false;
+                                        } else {
+                                            console.error(line[2] + `: must be true or false`);
+                                        };
+                                    }
+                                } else {
+                                    console.error(line[1] + `: sister not found`);
                                 }
                                 break;
                             case "":
