@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const prompt = require('async-prompt');
-const { log } = require("console");
+const { log, Console } = require("console");
 const arg = process.argv;
 
 const mainpath = path.join(arg[2]);
@@ -779,6 +779,8 @@ if (!/\\$/gm.test(mainpath)) {
         let declare = {};
         let comment = [];
         let module = {};
+        let brother = {};
+        let sister = {};
         let m_declare = {};
         let data_type = {};
         let global = {};
@@ -804,6 +806,36 @@ if (!/\\$/gm.test(mainpath)) {
             }
             global.data_type = data_type;
         };
+        if (typeof door.brother !== "undefined") {
+            for (var v = 0; v < door.brother.length; v++) {
+                let bro = door.brother[v];
+
+                if (typeof bro.name !== "undefined") {
+                    if (typeof bro.member !== "undefined") {
+                        if (bro.member.length > 0) {
+                            let members = [];
+
+                            for (var r = 0; r < bro.member.length; r++) {
+                                if (typeof module[bro.member[r]] !== "undefined") {
+                                    members.push(bro.member[r]);
+                                } else {
+                                    Console.error(`Brother ${v}: module "${bro.member[r]}" was not found in module object`)
+                                }
+                            }
+                            brother[bro.name] = members;
+                        } else {
+                            console.error(`Brother ${v}: a brother cannot have no element in an object.`)
+                        }
+                    } else {
+                        console.error(`Brother ${v}: the brother object must have a member field`);
+                    }
+                } else {
+                    Console.error(`Brother ${v}: must have a name field`);
+                }
+            }
+            global.brother = brother;
+        };
+        log(brother)
         for (var cl = 0; cl < door.call.length; cl++) {
             if (/\.du$/gm.test(door.call[cl])) {
                 if (fs.existsSync(path.join(mainpath + door.call[cl]))) {
@@ -945,6 +977,23 @@ if (!/\\$/gm.test(mainpath)) {
 
                                     } else {
                                         console.error(line[1]`: Modular type was not found`);
+                                    }
+                                    break;
+                                case "brother":
+                                    if (typeof brother[line[1]] !== "undefined") {
+                                        var bro = brother[line[1]];
+
+                                        for (var fr = 0; fr < bro.length; fr++) {
+                                            if (line[2] == "true") {
+                                                module[bro[fr]].request = true;
+                                            } else if (line[2] == "false") {
+                                                module[bro[fr]].request = false;
+                                            } else {
+                                                console.error(line[2] + `: must be true or false`);
+                                            };
+                                        }
+                                    } else {
+                                        console.error(line[1] + `: brother not found`);
                                     }
                                     break;
                                 case "":
@@ -1112,6 +1161,23 @@ if (!/\\$/gm.test(mainpath)) {
                                         console.error(line[1]`: Modular type was not found`);
                                     }
                                     break;
+                                case "brother":
+                                    if (typeof brother[line[1]] !== "undefined") {
+                                        var bro = brother[line[1]];
+
+                                        for (var fr = 0; fr < bro.length; fr++) {
+                                            if (line[2] == "true") {
+                                                module[bro[fr]].request = true;
+                                            } else if (line[2] == "false") {
+                                                module[bro[fr]].request = false;
+                                            } else {
+                                                console.error(line[2] + `: must be true or false`);
+                                            };
+                                        }
+                                    } else {
+                                        console.error(line[1] + `: brother not found`);
+                                    }
+                                    break;
                                 case "":
                                     break;
                                 default:
@@ -1272,6 +1338,23 @@ if (!/\\$/gm.test(mainpath)) {
 
                                         } else {
                                             console.error(line[1]`: Modular type was not found`);
+                                        }
+                                        break;
+                                    case "brother":
+                                        if (typeof brother[line[1]] !== "undefined") {
+                                            var bro = brother[line[1]];
+
+                                            for (var fr = 0; fr < bro.length; fr++) {
+                                                if (line[2] == "true") {
+                                                    module[bro[fr]].request = true;
+                                                } else if (line[2] == "false") {
+                                                    module[bro[fr]].request = false;
+                                                } else {
+                                                    console.error(line[2] + `: must be true or false`);
+                                                };
+                                            }
+                                        } else {
+                                            console.error(line[1] + `: brother not found`);
                                         }
                                         break;
                                     case "":
@@ -1438,6 +1521,23 @@ if (!/\\$/gm.test(mainpath)) {
 
                                         } else {
                                             console.error(line[1]`: Modular type was not found`);
+                                        }
+                                        break;
+                                    case "brother":
+                                        if (typeof brother[line[1]] !== "undefined") {
+                                            var bro = brother[line[1]];
+
+                                            for (var fr = 0; fr < bro.length; fr++) {
+                                                if (line[2] == "true") {
+                                                    module[bro[fr]].request = true;
+                                                } else if (line[2] == "false") {
+                                                    module[bro[fr]].request = false;
+                                                } else {
+                                                    console.error(line[2] + `: must be true or false`);
+                                                };
+                                            }
+                                        } else {
+                                            console.error(line[1] + `: brother not found`);
                                         }
                                         break;
                                     case "":
@@ -1612,6 +1712,23 @@ if (!/\\$/gm.test(mainpath)) {
 
                                     } else {
                                         console.error(line[1]`: Modular type was not found`);
+                                    }
+                                    break;
+                                case "brother":
+                                    if (typeof brother[line[1]] !== "undefined") {
+                                        var bro = brother[line[1]];
+
+                                        for (var fr = 0; fr < bro.length; fr++) {
+                                            if (line[2] == "true") {
+                                                module[bro[fr]].request = true;
+                                            } else if (line[2] == "false") {
+                                                module[bro[fr]].request = false;
+                                            } else {
+                                                console.error(line[2] + `: must be true or false`);
+                                            };
+                                        }
+                                    } else {
+                                        console.error(line[1] + `: brother not found`);
                                     }
                                     break;
                                 case "":
@@ -1804,6 +1921,23 @@ if (!/\\$/gm.test(mainpath)) {
 
                                 } else {
                                     console.error(line[1] + `: Modular type was not found`);
+                                }
+                                break;
+                            case "brother":
+                                if (typeof brother[line[1]] !== "undefined") {
+                                    var bro = brother[line[1]];
+
+                                    for (var fr = 0; fr < bro.length; fr++) {
+                                        if (line[2] == "true") {
+                                            module[bro[fr]].request = true;
+                                        } else if (line[2] == "false") {
+                                            module[bro[fr]].request = false;
+                                        } else {
+                                            console.error(line[2] + `: must be true or false`);
+                                        };
+                                    }
+                                } else {
+                                    console.error(line[1] + `: brother not found`);
                                 }
                                 break;
                             case "":
