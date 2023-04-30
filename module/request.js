@@ -7,6 +7,6 @@ module.exports = (body, mainpath, door, variable, comment, declare, modul, globa
         case "GET":
             Variable.set(variable, data[2], request("GET", data.slice(3).join(" ")).getBody("utf8"));
         default:
-            console.error(`Command "${data[1]}" from module request was not found`)
+            Elog(`Command "${data[1]}" from module request was not found`)
     }
 }

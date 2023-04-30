@@ -16,7 +16,7 @@ module.exports = (body, mainpath, door, variable, comment, declare, modul, globa
             re[name + i] = end[i];
         }
     } else {
-        console.error(`${name}: When creating a variable of type List, the value must be wrapped in [].\n       Sample: [${result}]`)
+        Elog(`${name}: When creating a variable of type List, the value must be wrapped in [].\n       Sample: [${result}]`)
     }
 
     return re;

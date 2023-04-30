@@ -12,7 +12,7 @@ module.exports = (body, mainpath, door, variable, comment, declare, modul, globa
             if (fs.existsSync(p)) {
                 fs.writeFileSync(path.join(mainpath, data[2]), data.slice(3).join(" "));
             } else {
-                console.error(`You cannot create a file in a non-existent directory`);
+                Elog(`You cannot create a file in a non-existent directory`);
             }
             break;
         case "readFile":
@@ -21,7 +21,7 @@ module.exports = (body, mainpath, door, variable, comment, declare, modul, globa
             if (fs.existsSync(p)) {
                 Variable.set(variable, data[3], fs.readFileSync(p));
             } else {
-                console.error(`You cannot create a file in a non-existent directory`);
+                Elog(`You cannot create a file in a non-existent directory`);
             }
             break;
         case "writeDir":
@@ -33,10 +33,10 @@ module.exports = (body, mainpath, door, variable, comment, declare, modul, globa
                 var dir = fs.readdirSync(p);
                 Variable.set(variable, data[3], dir);
             } else {
-                console.error(`Directory does not exist`);
+                Elog(`Directory does not exist`);
             }
             break;
         default:
-            console.error(`Command "${data[1]}" from module fs was not found`)
+            Elog(`Command "${data[1]}" from module fs was not found`)
     }
 };

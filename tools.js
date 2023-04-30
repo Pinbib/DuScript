@@ -9,7 +9,7 @@ class Variable {
         if (typeof variable[id] !== undefined) {
             delete variable[id];
         } else {
-            console.error(`Variable "${id}" does not exist`)
+            Elog(`Variable "${id}" does not exist`)
         }
     }
 }
@@ -38,7 +38,7 @@ class Formation {
                     end.push(comment[newtext[i + 1]]);
                     newtext[i + 1] = "";
                 } else {
-                    console.error(`After the sign "!" a number must go as this is a reference to the global comment which is an array.`);
+                    Elog(`After the sign "!" a number must go as this is a reference to the global comment which is an array.`);
                 }
             } else if (newtext[i] == "") { } else {
                 end.push(newtext[i]);

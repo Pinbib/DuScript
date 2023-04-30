@@ -9,12 +9,12 @@ module.exports = (body, mainpath, door, variable, comment, declare, modul, globa
             if (typeof global[newname].new == "function") {
                 return global[newname].new(data.slice(5).join(" "))
             } else {
-                console.error(`${newname}.new: is not a function`)
+                Elog(`${newname}.new: is not a function`)
             }
         } else {
-            console.error(newname + `: not intended for modular type "new"`)
+            Elog(newname + `: not intended for modular type "new"`)
         }
     } else {
-        console.error(newname + `: unregistered global name`)
+        Elog(newname + `: unregistered global name`)
     }
 }

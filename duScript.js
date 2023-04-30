@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const prompt = require('async-prompt');
 const { log, Console } = require("console");
+const Elog = require("console").error;
 const arg = process.argv;
 
 const mainpath = path.join(arg[2]);
@@ -61,7 +62,7 @@ if (!/\\$/gm.test(mainpath)) {
                             } else if (type == "!") {
                                 createVar(name, comment[Number(line[4])]);
                             } else {
-                                console.error(`str: ${i + 1}\n` + `The data type was not specified or was incorrectly specified`);
+                                Elog(`str: ${i + 1}\n` + `The data type was not specified or was incorrectly specified`);
                             }
                         }
                         break;
@@ -89,10 +90,10 @@ if (!/\\$/gm.test(mainpath)) {
                                 } else if (type == "!") {
                                     console.log(comment);
                                 } else {
-                                    console.error(`str: ${i + 1}\n` + `Input type was not specified correctly`);
+                                    Elog(`str: ${i + 1}\n` + `Input type was not specified correctly`);
                                 }
                             } else {
-                                console.error(`str: ${i + 1}\n` + `Call type was not specified correctly`);
+                                Elog(`str: ${i + 1}\n` + `Call type was not specified correctly`);
                             }
 
                         }
@@ -119,7 +120,7 @@ if (!/\\$/gm.test(mainpath)) {
                     case "":
                         break;
                     default:
-                        console.error(line[0] + `: Not registered command`);
+                        Elog(line[0] + `: Not registered command`);
                         break;
                 }
             }
@@ -176,7 +177,7 @@ if (!/\\$/gm.test(mainpath)) {
                             } else if (type == "!") {
                                 createVar(name, comment[Number(line[4])]);
                             } else {
-                                console.error(`str: ${i + 1}\n` + `The data type was not specified or was incorrectly specified`);
+                                Elog(`str: ${i + 1}\n` + `The data type was not specified or was incorrectly specified`);
                             }
                         }
                         break;
@@ -204,10 +205,10 @@ if (!/\\$/gm.test(mainpath)) {
                                 } else if (type == "!") {
                                     console.log(comment);
                                 } else {
-                                    console.error(`str: ${i + 1}\n` + `Input type was not specified correctly`);
+                                    Elog(`str: ${i + 1}\n` + `Input type was not specified correctly`);
                                 }
                             } else {
-                                console.error(`str: ${i + 1}\n` + `Call type was not specified correctly`);
+                                Elog(`str: ${i + 1}\n` + `Call type was not specified correctly`);
                             }
 
                         }
@@ -240,7 +241,7 @@ if (!/\\$/gm.test(mainpath)) {
                     case "":
                         break;
                     default:
-                        console.error(line[0] + `: Not registered command`);
+                        Elog(line[0] + `: Not registered command`);
                         break;
                 }
             }
@@ -299,7 +300,7 @@ if (!/\\$/gm.test(mainpath)) {
                                 } else if (type == "!") {
                                     createVar(name, comment[Number(line[4])]);
                                 } else {
-                                    console.error(`str: ${i + 1}\n` + `The data type was not specified or was incorrectly specified`);
+                                    Elog(`str: ${i + 1}\n` + `The data type was not specified or was incorrectly specified`);
                                 }
                             }
                             break;
@@ -327,10 +328,10 @@ if (!/\\$/gm.test(mainpath)) {
                                     } else if (type == "!") {
                                         console.log(comment);
                                     } else {
-                                        console.error(`str: ${i + 1}\n` + `Input type was not specified correctly`);
+                                        Elog(`str: ${i + 1}\n` + `Input type was not specified correctly`);
                                     }
                                 } else {
-                                    console.error(`str: ${i + 1}\n` + `Call type was not specified correctly`);
+                                    Elog(`str: ${i + 1}\n` + `Call type was not specified correctly`);
                                 }
 
                             }
@@ -357,7 +358,7 @@ if (!/\\$/gm.test(mainpath)) {
                         case "":
                             break;
                         default:
-                            console.error(line[0] + `: Not registered command`);
+                            Elog(line[0] + `: Not registered command`);
                             break;
                     }
                 }
@@ -414,7 +415,7 @@ if (!/\\$/gm.test(mainpath)) {
                                 } else if (type == "!") {
                                     createVar(name, comment[Number(line[4])]);
                                 } else {
-                                    console.error(`str: ${i + 1}\n` + `The data type was not specified or was incorrectly specified`);
+                                    Elog(`str: ${i + 1}\n` + `The data type was not specified or was incorrectly specified`);
                                 }
                             }
                             break;
@@ -442,10 +443,10 @@ if (!/\\$/gm.test(mainpath)) {
                                     } else if (type == "!") {
                                         console.log(comment);
                                     } else {
-                                        console.error(`str: ${i + 1}\n` + `Input type was not specified correctly`);
+                                        Elog(`str: ${i + 1}\n` + `Input type was not specified correctly`);
                                     }
                                 } else {
-                                    console.error(`str: ${i + 1}\n` + `Call type was not specified correctly`);
+                                    Elog(`str: ${i + 1}\n` + `Call type was not specified correctly`);
                                 }
 
                             }
@@ -478,7 +479,7 @@ if (!/\\$/gm.test(mainpath)) {
                         case "":
                             break;
                         default:
-                            console.error(line[0] + `: Not registered command`);
+                            Elog(line[0] + `: Not registered command`);
                             break;
                     }
                 }
@@ -533,7 +534,7 @@ if (!/\\$/gm.test(mainpath)) {
                             } else if (type == "!") {
                                 createVar(name, comment[Number(line[4])]);
                             } else {
-                                console.error(`str: ${i + 1}\n` + `The data type was not specified or was incorrectly specified`);
+                                Elog(`str: ${i + 1}\n` + `The data type was not specified or was incorrectly specified`);
                             }
                         }
                         break;
@@ -561,10 +562,10 @@ if (!/\\$/gm.test(mainpath)) {
                                 } else if (type == "!") {
                                     console.log(comment);
                                 } else {
-                                    console.error(`str: ${i + 1}\n` + `Input type was not specified correctly`);
+                                    Elog(`str: ${i + 1}\n` + `Input type was not specified correctly`);
                                 }
                             } else {
-                                console.error(`str: ${i + 1}\n` + `Call type was not specified correctly`);
+                                Elog(`str: ${i + 1}\n` + `Call type was not specified correctly`);
                             }
 
                         }
@@ -607,7 +608,7 @@ if (!/\\$/gm.test(mainpath)) {
                     case "":
                         break;
                     default:
-                        console.error(line[0] + `: Not registered command`);
+                        Elog(line[0] + `: Not registered command`);
                         break;
                 }
                 for (var i = 0; i < varlist.length; i++) {
@@ -661,7 +662,7 @@ if (!/\\$/gm.test(mainpath)) {
                         } else if (type == "!") {
                             createVar(name, comment[Number(line[4])]);
                         } else {
-                            console.error(`str: ${i + 1}\n` + `The data type was not specified or was incorrectly specified`);
+                            Elog(`str: ${i + 1}\n` + `The data type was not specified or was incorrectly specified`);
                         }
                     }
                     break;
@@ -689,12 +690,12 @@ if (!/\\$/gm.test(mainpath)) {
                             } else if (type == "!") {
                                 console.log(comment);
                             } else {
-                                console.error(`str: ${i + 1}\n` + `Input type was not specified correctly`);
+                                Elog(`str: ${i + 1}\n` + `Input type was not specified correctly`);
                             }
                         } else if ("function") {
                             callFunc(line[2]);
                         } else {
-                            console.error(`str: ${i + 1}\n` + `Call type was not specified correctly`);
+                            Elog(`str: ${i + 1}\n` + `Call type was not specified correctly`);
                         }
 
                     }
@@ -748,13 +749,13 @@ if (!/\\$/gm.test(mainpath)) {
                 case "":
                     break;
                 default:
-                    console.error(line[0] + `: Not registered command`);
+                    Elog(line[0] + `: Not registered command`);
                     break;
             }
         }
 
     } else {
-        console.error(`The executable must have a .du permission`);
+        Elog(`The executable must have a .du permission`);
     }
 } else {
     /*
@@ -781,6 +782,7 @@ if (!/\\$/gm.test(mainpath)) {
         let module = {};
         let brother = {};
         let sister = {};
+        let family = {};
         let m_declare = {};
         let data_type = {};
         let global = {};
@@ -819,18 +821,18 @@ if (!/\\$/gm.test(mainpath)) {
                                 if (typeof module[bro.member[r]] !== "undefined") {
                                     members.push(bro.member[r]);
                                 } else {
-                                    Console.error(`Brother ${v}: module "${bro.member[r]}" was not found in module object`)
+                                    Elog(`Brother ${v}: module "${bro.member[r]}" was not found in module object.`)
                                 }
                             }
                             brother[bro.name] = members;
                         } else {
-                            console.error(`Brother ${v}: a brother cannot have no element in an object.`)
+                            Elog(`Brother ${v}: a brother cannot have no element in an object.`)
                         }
                     } else {
-                        console.error(`Brother ${v}: the brother object must have a member field`);
+                        Elog(`Brother ${v}: the brother object must have a member field.`);
                     }
                 } else {
-                    Console.error(`Brother ${v}: must have a name field`);
+                    Elog(`Brother ${v}: must have a name field.`);
                 }
             }
             global.brother = brother;
@@ -848,22 +850,76 @@ if (!/\\$/gm.test(mainpath)) {
                                 if (typeof data_type[sis.member[r]] !== "undefined") {
                                     members.push(sis.member[r]);
                                 } else {
-                                    Console.error(`Sister ${v}: module "${sis.member[r]}" was not found in dataType object`)
+                                    Elog(`Sister ${v}: module "${sis.member[r]}" was not found in dataType object.`)
                                 }
                             }
                             sister[sis.name] = members;
                         } else {
-                            console.error(`Sister ${v}: a sister cannot have no element in an object.`)
+                            Elog(`Sister ${v}: a sister cannot have no element in an object.`)
                         }
                     } else {
-                        console.error(`Sister ${v}: the sister object must have a member field`);
+                        Elog(`Sister ${v}: the sister object must have a member field.`);
                     }
                 } else {
-                    Console.error(`Sister ${v}: must have a name field`);
+                    Elog(`Sister ${v}: must have a name field.`);
                 }
             }
             global.sister = sister;
         }
+        if (typeof door.family !== "undefined") {
+            for (var v = 0; v < door.family.length; v++) {
+                let fam = door.family[v];
+                if (typeof fam.name !== "undefined") {
+                    if (typeof fam.member !== "undefined") {
+                        let member = [];
+                        for (var r = 0; r < fam.member.length; r++) {
+                            let mem = fam.member[r];
+
+                            if (typeof mem.type !== "undefined" && typeof mem.name !== "undefined") {
+
+                                if (mem.type == "module" || mem.type == "data") {
+                                    if (mem.type == "module") {
+                                        if (typeof module[mem.name] !== "undefined") {
+                                            member.push(mem);
+                                        } else {
+                                            Elog(`Family ${v}: Member ${r}: module "${mem.name}" was not found in module.`)
+                                        }
+                                    } else {
+                                        if (typeof data_type[mem.name] !== "undefined") {
+                                            member.push(mem);
+                                        } else {
+                                            Elog(`Family ${v}: Member ${r}: datatype "${mem.name}" was not found in datatype.`)
+                                        }
+                                    }
+                                } else {
+                                    Elog(`Family ${v}: Member ${r}: unknown type.`)
+                                }
+                            } else {
+                                Elog(`Family ${v}: Member ${r}: must have a name and a type.`)
+                            }
+                        }
+                        family[fam.name] = member;
+                    } else {
+                        Elog(`Family ${v}: must have members.`)
+                    }
+                } else {
+                    Elog(`Family ${v}: must have a name.`);
+                }
+            }
+        }
+        if (typeof door.variable !== "undefined") {
+            let data = door.variable;
+            global.variable = {};
+            for (var v = 0; v < data.length; v++) {
+                let dat = data[v];
+                if (typeof dat.name !== "undefined" && typeof dat.value !== "undefined") {
+                    global.variable[dat.name] = dat.value;
+                } else {
+                    Elog(`Variable: ${v}: must have a name and a value.`)
+                }
+            }
+        }
+
         for (var cl = 0; cl < door.call.length; cl++) {
             if (/\.du$/gm.test(door.call[cl])) {
                 if (fs.existsSync(path.join(mainpath + door.call[cl]))) {
@@ -922,10 +978,10 @@ if (!/\\$/gm.test(mainpath)) {
                                                 if (th.request) {
                                                     createVar(name, th.main(line.join(" ").replace(/^\{|\}$/gm, ""), mainpath, door, variable, comment, declare, module, global, path.join(__dirname, "tools.js")));
                                                 } else {
-                                                    console.error(type + `: Modular type has not been confirmed`)
+                                                    Elog(type + `: Modular type has not been confirmed`)
                                                 }
                                             } else {
-                                                console.error(`str: ${i + 1} \n` + `The data type was not specified or was incorrectly specified`);
+                                                Elog(`str: ${i + 1} \n` + `The data type was not specified or was incorrectly specified`);
                                             }
                                         }
                                     }
@@ -954,10 +1010,10 @@ if (!/\\$/gm.test(mainpath)) {
                                             } else if (type == "!") {
                                                 console.log(comment);
                                             } else {
-                                                console.error(`str: ${i + 1} \n` + `Input type was not specified correctly`);
+                                                Elog(`str: ${i + 1} \n` + `Input type was not specified correctly`);
                                             }
                                         } else {
-                                            console.error(`str: ${i + 1} \n` + `Call type was not specified correctly`);
+                                            Elog(`str: ${i + 1} \n` + `Call type was not specified correctly`);
                                         }
 
                                     }
@@ -990,7 +1046,7 @@ if (!/\\$/gm.test(mainpath)) {
                                         }
 
                                     } else {
-                                        console.error(line[1]`: Module not found`);
+                                        Elog(line[1]`: Module not found`);
                                     }
                                     break;
                                 case "mother":
@@ -1000,11 +1056,11 @@ if (!/\\$/gm.test(mainpath)) {
                                         } else if (line[2] == "false") {
                                             data_type[line[1]].request = false;
                                         } else {
-                                            console.error(line[2] + `: must be true or false`);
+                                            Elog(line[2] + `: must be true or false`);
                                         }
 
                                     } else {
-                                        console.error(line[1]`: Modular type was not found`);
+                                        Elog(line[1]`: Modular type was not found`);
                                     }
                                     break;
                                 case "brother":
@@ -1017,11 +1073,11 @@ if (!/\\$/gm.test(mainpath)) {
                                             } else if (line[2] == "false") {
                                                 module[bro[fr]].request = false;
                                             } else {
-                                                console.error(line[2] + `: must be true or false`);
+                                                Elog(line[2] + `: must be true or false`);
                                             };
                                         }
                                     } else {
-                                        console.error(line[1] + `: brother not found`);
+                                        Elog(line[1] + `: brother not found`);
                                     }
                                     break;
                                 case "sister":
@@ -1034,11 +1090,42 @@ if (!/\\$/gm.test(mainpath)) {
                                             } else if (line[2] == "false") {
                                                 data_type[sis[fr]].request = false;
                                             } else {
-                                                console.error(line[2] + `: must be true or false`);
+                                                Elog(line[2] + `: must be true or false`);
                                             };
                                         }
                                     } else {
-                                        console.error(line[1] + `: sister not found`);
+                                        Elog(line[1] + `: sister not found`);
+                                    }
+                                    break;
+                                case "family":
+                                    if (typeof family[line[1]] !== "undefined") {
+                                        var fam = family[line[1]];
+                                        for (var fr = 0; fr < fam.length; fr++) {
+                                            var mem = fam[fr];
+                                            if (mem.type == "module") {
+                                                if (typeof module[mem.name] !== "undefined") {
+                                                    if (line[2] == "true") {
+                                                        module[mem.name].request = true;
+                                                    } else if (line[2] == "false") {
+                                                        module[mem.name].request = false;
+                                                    }
+                                                } else {
+                                                    Elog(line[1] + `: module "${mem.name}" was not found in module`);
+                                                }
+                                            } else {
+                                                if (typeof data_type[mem.name] !== "undefined") {
+                                                    if (line[2] == "true") {
+                                                        data_type[mem.name].request = true;
+                                                    } else if (line[2] == "false") {
+                                                        data_type[mem.name].request = false;
+                                                    }
+                                                } else {
+                                                    Elog(line[1] + `: datatype "${mem.name}" was not found in datatype`);
+                                                }
+                                            }
+                                        }
+                                    } else {
+                                        Elog(line[1] + `: sister not found`);
                                     }
                                     break;
                                 case "":
@@ -1049,10 +1136,10 @@ if (!/\\$/gm.test(mainpath)) {
                                         if (th.request) {
                                             th.main(line.join(" ").replace(/^\{|\}$/gm, ""), mainpath, door, variable, comment, declare, module, global, path.join(__dirname, "tools.js"));
                                         } else {
-                                            console.error(line[0] + `: The module has not been validated`)
+                                            Elog(line[0] + `: The module has not been validated`)
                                         }
                                     } else {
-                                        console.error(line[0] + `: Not registered command`);
+                                        Elog(line[0] + `: Not registered command`);
                                     }
                                     break;
                             }
@@ -1115,10 +1202,10 @@ if (!/\\$/gm.test(mainpath)) {
                                                 if (th.request) {
                                                     createVar(name, th.main(line.join(" ").replace(/^\{|\}$/gm, ""), mainpath, door, variable, comment, declare, module, global, path.join(__dirname, "tools.js")));
                                                 } else {
-                                                    console.error(type + `: Modular type has not been confirmed`)
+                                                    Elog(type + `: Modular type has not been confirmed`)
                                                 }
                                             } else {
-                                                console.error(`str: ${i + 1} \n` + `The data type was not specified or was incorrectly specified`);
+                                                Elog(`str: ${i + 1} \n` + `The data type was not specified or was incorrectly specified`);
                                             }
                                         }
                                     }
@@ -1147,10 +1234,10 @@ if (!/\\$/gm.test(mainpath)) {
                                             } else if (type == "!") {
                                                 console.log(comment);
                                             } else {
-                                                console.error(`str: ${i + 1} \n` + `Input type was not specified correctly`);
+                                                Elog(`str: ${i + 1} \n` + `Input type was not specified correctly`);
                                             }
                                         } else {
-                                            console.error(`str: ${i + 1} \n` + `Call type was not specified correctly`);
+                                            Elog(`str: ${i + 1} \n` + `Call type was not specified correctly`);
                                         }
 
                                     }
@@ -1189,7 +1276,7 @@ if (!/\\$/gm.test(mainpath)) {
                                         }
 
                                     } else {
-                                        console.error(line[1]`: Module not found`);
+                                        Elog(line[1]`: Module not found`);
                                     }
                                     break;
                                 case "mother":
@@ -1199,11 +1286,11 @@ if (!/\\$/gm.test(mainpath)) {
                                         } else if (line[2] == "false") {
                                             data_type[line[1]].request = false;
                                         } else {
-                                            console.error(line[2] + `: must be true or false`);
+                                            Elog(line[2] + `: must be true or false`);
                                         }
 
                                     } else {
-                                        console.error(line[1]`: Modular type was not found`);
+                                        Elog(line[1]`: Modular type was not found`);
                                     }
                                     break;
                                 case "brother":
@@ -1216,11 +1303,11 @@ if (!/\\$/gm.test(mainpath)) {
                                             } else if (line[2] == "false") {
                                                 module[bro[fr]].request = false;
                                             } else {
-                                                console.error(line[2] + `: must be true or false`);
+                                                Elog(line[2] + `: must be true or false`);
                                             };
                                         }
                                     } else {
-                                        console.error(line[1] + `: brother not found`);
+                                        Elog(line[1] + `: brother not found`);
                                     }
                                     break;
                                 case "sister":
@@ -1233,11 +1320,42 @@ if (!/\\$/gm.test(mainpath)) {
                                             } else if (line[2] == "false") {
                                                 data_type[sis[fr]].request = false;
                                             } else {
-                                                console.error(line[2] + `: must be true or false`);
+                                                Elog(line[2] + `: must be true or false`);
                                             };
                                         }
                                     } else {
-                                        console.error(line[1] + `: sister not found`);
+                                        Elog(line[1] + `: sister not found`);
+                                    }
+                                    break;
+                                case "family":
+                                    if (typeof family[line[1]] !== "undefined") {
+                                        var fam = family[line[1]];
+                                        for (var fr = 0; fr < fam.length; fr++) {
+                                            var mem = fam[fr];
+                                            if (mem.type == "module") {
+                                                if (typeof module[mem.name] !== "undefined") {
+                                                    if (line[2] == "true") {
+                                                        module[mem.name].request = true;
+                                                    } else if (line[2] == "false") {
+                                                        module[mem.name].request = false;
+                                                    }
+                                                } else {
+                                                    Elog(line[1] + `: module "${mem.name}" was not found in module`);
+                                                }
+                                            } else {
+                                                if (typeof data_type[mem.name] !== "undefined") {
+                                                    if (line[2] == "true") {
+                                                        data_type[mem.name].request = true;
+                                                    } else if (line[2] == "false") {
+                                                        data_type[mem.name].request = false;
+                                                    }
+                                                } else {
+                                                    Elog(line[1] + `: datatype "${mem.name}" was not found in datatype`);
+                                                }
+                                            }
+                                        }
+                                    } else {
+                                        Elog(line[1] + `: sister not found`);
                                     }
                                     break;
                                 case "":
@@ -1248,10 +1366,10 @@ if (!/\\$/gm.test(mainpath)) {
                                         if (th.request) {
                                             th.main(line.join(" ").replace(/^\{|\}$/gm, ""), mainpath, door, variable, comment, declare, module, global, path.join(__dirname, "tools.js"));
                                         } else {
-                                            console.error(line[0] + `: The module has not been validated`)
+                                            Elog(line[0] + `: The module has not been validated`)
                                         }
                                     } else {
-                                        console.error(line[0] + `: Not registered command`);
+                                        Elog(line[0] + `: Not registered command`);
                                     }
                                     break;
                             }
@@ -1316,10 +1434,10 @@ if (!/\\$/gm.test(mainpath)) {
                                                     if (th.request) {
                                                         createVar(name, th.main(line.join(" ").replace(/^\{|\}$/gm, ""), mainpath, door, variable, comment, declare, module, global, path.join(__dirname, "tools.js")));
                                                     } else {
-                                                        console.error(type + `: Modular type has not been confirmed`)
+                                                        Elog(type + `: Modular type has not been confirmed`)
                                                     }
                                                 } else {
-                                                    console.error(`str: ${i + 1} \n` + `The data type was not specified or was incorrectly specified`);
+                                                    Elog(`str: ${i + 1} \n` + `The data type was not specified or was incorrectly specified`);
                                                 }
                                             }
                                         }
@@ -1348,10 +1466,10 @@ if (!/\\$/gm.test(mainpath)) {
                                                 } else if (type == "!") {
                                                     console.log(comment);
                                                 } else {
-                                                    console.error(`str: ${i + 1} \n` + `Input type was not specified correctly`);
+                                                    Elog(`str: ${i + 1} \n` + `Input type was not specified correctly`);
                                                 }
                                             } else {
-                                                console.error(`str: ${i + 1} \n` + `Call type was not specified correctly`);
+                                                Elog(`str: ${i + 1} \n` + `Call type was not specified correctly`);
                                             }
 
                                         }
@@ -1382,10 +1500,10 @@ if (!/\\$/gm.test(mainpath)) {
                                             } else if (line[2] == "false") {
                                                 module[line[1]].request = false;
                                             } else {
-                                                console.error(line[2] + `: must be true or false`);
+                                                Elog(line[2] + `: must be true or false`);
                                             };
                                         } else {
-                                            console.error(line[1] + `: Module not found`);
+                                            Elog(line[1] + `: Module not found`);
                                         }
                                         break;
                                     case "mother":
@@ -1395,11 +1513,11 @@ if (!/\\$/gm.test(mainpath)) {
                                             } else if (line[2] == "false") {
                                                 data_type[line[1]].request = false;
                                             } else {
-                                                console.error(line[2] + `: must be true or false`);
+                                                Elog(line[2] + `: must be true or false`);
                                             }
 
                                         } else {
-                                            console.error(line[1]`: Modular type was not found`);
+                                            Elog(line[1]`: Modular type was not found`);
                                         }
                                         break;
                                     case "brother":
@@ -1412,11 +1530,11 @@ if (!/\\$/gm.test(mainpath)) {
                                                 } else if (line[2] == "false") {
                                                     module[bro[fr]].request = false;
                                                 } else {
-                                                    console.error(line[2] + `: must be true or false`);
+                                                    Elog(line[2] + `: must be true or false`);
                                                 };
                                             }
                                         } else {
-                                            console.error(line[1] + `: brother not found`);
+                                            Elog(line[1] + `: brother not found`);
                                         }
                                         break;
                                     case "sister":
@@ -1429,11 +1547,42 @@ if (!/\\$/gm.test(mainpath)) {
                                                 } else if (line[2] == "false") {
                                                     data_type[sis[fr]].request = false;
                                                 } else {
-                                                    console.error(line[2] + `: must be true or false`);
+                                                    Elog(line[2] + `: must be true or false`);
                                                 };
                                             }
                                         } else {
-                                            console.error(line[1] + `: sister not found`);
+                                            Elog(line[1] + `: sister not found`);
+                                        }
+                                        break;
+                                    case "family":
+                                        if (typeof family[line[1]] !== "undefined") {
+                                            var fam = family[line[1]];
+                                            for (var fr = 0; fr < fam.length; fr++) {
+                                                var mem = fam[fr];
+                                                if (mem.type == "module") {
+                                                    if (typeof module[mem.name] !== "undefined") {
+                                                        if (line[2] == "true") {
+                                                            module[mem.name].request = true;
+                                                        } else if (line[2] == "false") {
+                                                            module[mem.name].request = false;
+                                                        }
+                                                    } else {
+                                                        Elog(line[1] + `: module "${mem.name}" was not found in module`);
+                                                    }
+                                                } else {
+                                                    if (typeof data_type[mem.name] !== "undefined") {
+                                                        if (line[2] == "true") {
+                                                            data_type[mem.name].request = true;
+                                                        } else if (line[2] == "false") {
+                                                            data_type[mem.name].request = false;
+                                                        }
+                                                    } else {
+                                                        Elog(line[1] + `: datatype "${mem.name}" was not found in datatype`);
+                                                    }
+                                                }
+                                            }
+                                        } else {
+                                            Elog(line[1] + `: sister not found`);
                                         }
                                         break;
                                     case "":
@@ -1444,10 +1593,10 @@ if (!/\\$/gm.test(mainpath)) {
                                             if (th.request) {
                                                 th.main(line.join(" ").replace(/^\{|\}$/gm, ""), mainpath, door, variable, comment, declare, module, global, path.join(__dirname, "tools.js"));
                                             } else {
-                                                console.error(line[0] + `: The module has not been validated`)
+                                                Elog(line[0] + `: The module has not been validated`)
                                             }
                                         } else {
-                                            console.error(line[0] + `: Not registered command`);
+                                            Elog(line[0] + `: Not registered command`);
                                         }
                                         break;
                                 }
@@ -1510,10 +1659,10 @@ if (!/\\$/gm.test(mainpath)) {
                                                     if (th.request) {
                                                         createVar(name, th.main(line.join(" ").replace(/^\{|\}$/gm, ""), mainpath, door, variable, comment, declare, module, global, path.join(__dirname, "tools.js")));
                                                     } else {
-                                                        console.error(type + `: Modular type has not been confirmed`)
+                                                        Elog(type + `: Modular type has not been confirmed`)
                                                     }
                                                 } else {
-                                                    console.error(`str: ${i + 1} \n` + `The data type was not specified or was incorrectly specified`);
+                                                    Elog(`str: ${i + 1} \n` + `The data type was not specified or was incorrectly specified`);
                                                 }
                                             }
                                         }
@@ -1542,10 +1691,10 @@ if (!/\\$/gm.test(mainpath)) {
                                                 } else if (type == "!") {
                                                     console.log(comment);
                                                 } else {
-                                                    console.error(`str: ${i + 1} \n` + `Input type was not specified correctly`);
+                                                    Elog(`str: ${i + 1} \n` + `Input type was not specified correctly`);
                                                 }
                                             } else {
-                                                console.error(`str: ${i + 1} \n` + `Call type was not specified correctly`);
+                                                Elog(`str: ${i + 1} \n` + `Call type was not specified correctly`);
                                             }
 
                                         }
@@ -1582,10 +1731,10 @@ if (!/\\$/gm.test(mainpath)) {
                                             } else if (line[2] == "false") {
                                                 module[line[1]].request = false;
                                             } else {
-                                                console.error(line[2] + `: must be true or false`);
+                                                Elog(line[2] + `: must be true or false`);
                                             };
                                         } else {
-                                            console.error(line[1] + `: Module not found`);
+                                            Elog(line[1] + `: Module not found`);
                                         }
                                         break;
                                     case "mother":
@@ -1595,11 +1744,11 @@ if (!/\\$/gm.test(mainpath)) {
                                             } else if (line[2] == "false") {
                                                 data_type[line[1]].request = false;
                                             } else {
-                                                console.error(line[2] + `: must be true or false`);
+                                                Elog(line[2] + `: must be true or false`);
                                             }
 
                                         } else {
-                                            console.error(line[1]`: Modular type was not found`);
+                                            Elog(line[1]`: Modular type was not found`);
                                         }
                                         break;
                                     case "brother":
@@ -1612,11 +1761,11 @@ if (!/\\$/gm.test(mainpath)) {
                                                 } else if (line[2] == "false") {
                                                     module[bro[fr]].request = false;
                                                 } else {
-                                                    console.error(line[2] + `: must be true or false`);
+                                                    Elog(line[2] + `: must be true or false`);
                                                 };
                                             }
                                         } else {
-                                            console.error(line[1] + `: brother not found`);
+                                            Elog(line[1] + `: brother not found`);
                                         }
                                         break;
                                     case "sister":
@@ -1629,11 +1778,42 @@ if (!/\\$/gm.test(mainpath)) {
                                                 } else if (line[2] == "false") {
                                                     data_type[sis[fr]].request = false;
                                                 } else {
-                                                    console.error(line[2] + `: must be true or false`);
+                                                    Elog(line[2] + `: must be true or false`);
                                                 };
                                             }
                                         } else {
-                                            console.error(line[1] + `: sister not found`);
+                                            Elog(line[1] + `: sister not found`);
+                                        }
+                                        break;
+                                    case "family":
+                                        if (typeof family[line[1]] !== "undefined") {
+                                            var fam = family[line[1]];
+                                            for (var fr = 0; fr < fam.length; fr++) {
+                                                var mem = fam[fr];
+                                                if (mem.type == "module") {
+                                                    if (typeof module[mem.name] !== "undefined") {
+                                                        if (line[2] == "true") {
+                                                            module[mem.name].request = true;
+                                                        } else if (line[2] == "false") {
+                                                            module[mem.name].request = false;
+                                                        }
+                                                    } else {
+                                                        Elog(line[1] + `: module "${mem.name}" was not found in module`);
+                                                    }
+                                                } else {
+                                                    if (typeof data_type[mem.name] !== "undefined") {
+                                                        if (line[2] == "true") {
+                                                            data_type[mem.name].request = true;
+                                                        } else if (line[2] == "false") {
+                                                            data_type[mem.name].request = false;
+                                                        }
+                                                    } else {
+                                                        Elog(line[1] + `: datatype "${mem.name}" was not found in datatype`);
+                                                    }
+                                                }
+                                            }
+                                        } else {
+                                            Elog(line[1] + `: sister not found`);
                                         }
                                         break;
                                     case "":
@@ -1644,10 +1824,10 @@ if (!/\\$/gm.test(mainpath)) {
                                             if (th.request) {
                                                 th.main(line.join(" ").replace(/^\{|\}$/gm, ""), mainpath, door, variable, comment, declare, module, global, path.join(__dirname, "tools.js"));
                                             } else {
-                                                console.error(line[0] + `: The module has not been validated`)
+                                                Elog(line[0] + `: The module has not been validated`)
                                             }
                                         } else {
-                                            console.error(line[0] + `: Not registered command`);
+                                            Elog(line[0] + `: Not registered command`);
                                         }
                                         break;
                                 }
@@ -1708,10 +1888,10 @@ if (!/\\$/gm.test(mainpath)) {
                                                 if (th.request) {
                                                     createVar(name, th.main(line.join(" ").replace(/^\{|\}$/gm, ""), mainpath, door, variable, comment, declare, module, global, path.join(__dirname, "tools.js")));
                                                 } else {
-                                                    console.error(type + `: Modular type has not been confirmed`)
+                                                    Elog(type + `: Modular type has not been confirmed`)
                                                 }
                                             } else {
-                                                console.error(`str: ${i + 1} \n` + `The data type was not specified or was incorrectly specified`);
+                                                Elog(`str: ${i + 1} \n` + `The data type was not specified or was incorrectly specified`);
                                             }
                                         }
                                     }
@@ -1740,10 +1920,10 @@ if (!/\\$/gm.test(mainpath)) {
                                             } else if (type == "!") {
                                                 console.log(comment);
                                             } else {
-                                                console.error(`str: ${i + 1} \n` + `Input type was not specified correctly`);
+                                                Elog(`str: ${i + 1} \n` + `Input type was not specified correctly`);
                                             }
                                         } else {
-                                            console.error(`str: ${i + 1} \n` + `Call type was not specified correctly`);
+                                            Elog(`str: ${i + 1} \n` + `Call type was not specified correctly`);
                                         }
 
                                     }
@@ -1790,10 +1970,10 @@ if (!/\\$/gm.test(mainpath)) {
                                         } else if (line[2] == "false") {
                                             module[line[1]].request = false;
                                         } else {
-                                            console.error(line[2] + `: must be true or false`);
+                                            Elog(line[2] + `: must be true or false`);
                                         };
                                     } else {
-                                        console.error(line[1] + `: Module not found`);
+                                        Elog(line[1] + `: Module not found`);
                                     }
                                     break;
                                 case "mother":
@@ -1803,11 +1983,11 @@ if (!/\\$/gm.test(mainpath)) {
                                         } else if (line[2] == "false") {
                                             data_type[line[1]].request = false;
                                         } else {
-                                            console.error(line[2] + `: must be true or false`);
+                                            Elog(line[2] + `: must be true or false`);
                                         }
 
                                     } else {
-                                        console.error(line[1]`: Modular type was not found`);
+                                        Elog(line[1]`: Modular type was not found`);
                                     }
                                     break;
                                 case "brother":
@@ -1820,11 +2000,11 @@ if (!/\\$/gm.test(mainpath)) {
                                             } else if (line[2] == "false") {
                                                 module[bro[fr]].request = false;
                                             } else {
-                                                console.error(line[2] + `: must be true or false`);
+                                                Elog(line[2] + `: must be true or false`);
                                             };
                                         }
                                     } else {
-                                        console.error(line[1] + `: brother not found`);
+                                        Elog(line[1] + `: brother not found`);
                                     }
                                     break;
                                 case "sister":
@@ -1837,11 +2017,42 @@ if (!/\\$/gm.test(mainpath)) {
                                             } else if (line[2] == "false") {
                                                 data_type[sis[fr]].request = false;
                                             } else {
-                                                console.error(line[2] + `: must be true or false`);
+                                                Elog(line[2] + `: must be true or false`);
                                             };
                                         }
                                     } else {
-                                        console.error(line[1] + `: sister not found`);
+                                        Elog(line[1] + `: sister not found`);
+                                    }
+                                    break;
+                                case "family":
+                                    if (typeof family[line[1]] !== "undefined") {
+                                        var fam = family[line[1]];
+                                        for (var fr = 0; fr < fam.length; fr++) {
+                                            var mem = fam[fr];
+                                            if (mem.type == "module") {
+                                                if (typeof module[mem.name] !== "undefined") {
+                                                    if (line[2] == "true") {
+                                                        module[mem.name].request = true;
+                                                    } else if (line[2] == "false") {
+                                                        module[mem.name].request = false;
+                                                    }
+                                                } else {
+                                                    Elog(line[1] + `: module "${mem.name}" was not found in module`);
+                                                }
+                                            } else {
+                                                if (typeof data_type[mem.name] !== "undefined") {
+                                                    if (line[2] == "true") {
+                                                        data_type[mem.name].request = true;
+                                                    } else if (line[2] == "false") {
+                                                        data_type[mem.name].request = false;
+                                                    }
+                                                } else {
+                                                    Elog(line[1] + `: datatype "${mem.name}" was not found in datatype`);
+                                                }
+                                            }
+                                        }
+                                    } else {
+                                        Elog(line[1] + `: sister not found`);
                                     }
                                     break;
                                 case "":
@@ -1852,10 +2063,10 @@ if (!/\\$/gm.test(mainpath)) {
                                         if (th && th.request) {
                                             th.main(line.join(" ").replace(/^\{|\}$/gm, ""), mainpath, door, variable, comment, declare, module, global, path.join(__dirname, "tools.js"));
                                         } else {
-                                            console.error(line[0] + `: The module has not been validated`)
+                                            Elog(line[0] + `: The module has not been validated`)
                                         }
                                     } else {
-                                        console.error(line[0] + `: Not registered command`);
+                                        Elog(line[0] + `: Not registered command`);
                                     }
                                     break;
                             }
@@ -1915,10 +2126,10 @@ if (!/\\$/gm.test(mainpath)) {
                                             if (th.request) {
                                                 createVar(name, th.main(line.join(" ").replace(/^\{|\}$/gm, ""), mainpath, door, variable, comment, declare, module, global, path.join(__dirname, "tools.js")));
                                             } else {
-                                                console.error(type + `: Modular type has not been confirmed`)
+                                                Elog(type + `: Modular type has not been confirmed`)
                                             }
                                         } else {
-                                            console.error(`str: ${i + 1} \n` + `The data type was not specified or was incorrectly specified`);
+                                            Elog(`str: ${i + 1} \n` + `The data type was not specified or was incorrectly specified`);
                                         }
                                     }
                                 }
@@ -1947,12 +2158,12 @@ if (!/\\$/gm.test(mainpath)) {
                                         } else if (type == "!") {
                                             console.log(comment);
                                         } else {
-                                            console.error(`str: ${i + 1} \n` + `Input type was not specified correctly`);
+                                            Elog(`str: ${i + 1} \n` + `Input type was not specified correctly`);
                                         }
                                     } else if ("function") {
                                         callFunc(line[2]);
                                     } else {
-                                        console.error(`str: ${i + 1} \n` + `Call type was not specified correctly`);
+                                        Elog(`str: ${i + 1} \n` + `Call type was not specified correctly`);
                                     }
 
                                 }
@@ -2002,10 +2213,10 @@ if (!/\\$/gm.test(mainpath)) {
                                             let body = line.slice(5).join(" ").replace(/^\{|\}$/gm, "");
                                             m_declare[name] = body;
                                         } else {
-                                            console.error(line[2] + " :Unknown type of declared module")
+                                            Elog(line[2] + " :Unknown type of declared module")
                                         }
                                     } else {
-                                        console.error(line[1] + " :Unknown declared type")
+                                        Elog(line[1] + " :Unknown declared type")
                                     }
                                 }
                                 break;
@@ -2016,10 +2227,10 @@ if (!/\\$/gm.test(mainpath)) {
                                     } else if (line[2] == "false") {
                                         module[line[1]].request = false;
                                     } else {
-                                        console.error(line[2] + `: must be true or false`);
+                                        Elog(line[2] + `: must be true or false`);
                                     };
                                 } else {
-                                    console.error(line[1] + `: Module not found`);
+                                    Elog(line[1] + `: Module not found`);
                                 }
                                 break;
                             case "mother":
@@ -2029,11 +2240,11 @@ if (!/\\$/gm.test(mainpath)) {
                                     } else if (line[2] == "false") {
                                         data_type[line[1]].request = false;
                                     } else {
-                                        console.error(line[2] + `: must be true or false`);
+                                        Elog(line[2] + `: must be true or false`);
                                     }
 
                                 } else {
-                                    console.error(line[1] + `: Modular type was not found`);
+                                    Elog(line[1] + `: Modular type was not found`);
                                 }
                                 break;
                             case "brother":
@@ -2046,11 +2257,11 @@ if (!/\\$/gm.test(mainpath)) {
                                         } else if (line[2] == "false") {
                                             module[bro[fr]].request = false;
                                         } else {
-                                            console.error(line[2] + `: must be true or false`);
+                                            Elog(line[2] + `: must be true or false`);
                                         };
                                     }
                                 } else {
-                                    console.error(line[1] + `: brother not found`);
+                                    Elog(line[1] + `: brother not found`);
                                 }
                                 break;
                             case "sister":
@@ -2063,11 +2274,42 @@ if (!/\\$/gm.test(mainpath)) {
                                         } else if (line[2] == "false") {
                                             data_type[sis[fr]].request = false;
                                         } else {
-                                            console.error(line[2] + `: must be true or false`);
+                                            Elog(line[2] + `: must be true or false`);
                                         };
                                     }
                                 } else {
-                                    console.error(line[1] + `: sister not found`);
+                                    Elog(line[1] + `: sister not found`);
+                                }
+                                break;
+                            case "family":
+                                if (typeof family[line[1]] !== "undefined") {
+                                    var fam = family[line[1]];
+                                    for (var fr = 0; fr < fam.length; fr++) {
+                                        var mem = fam[fr];
+                                        if (mem.type == "module") {
+                                            if (typeof module[mem.name] !== "undefined") {
+                                                if (line[2] == "true") {
+                                                    module[mem.name].request = true;
+                                                } else if (line[2] == "false") {
+                                                    module[mem.name].request = false;
+                                                }
+                                            } else {
+                                                Elog(line[1] + `: module "${mem.name}" was not found in module`);
+                                            }
+                                        } else {
+                                            if (typeof data_type[mem.name] !== "undefined") {
+                                                if (line[2] == "true") {
+                                                    data_type[mem.name].request = true;
+                                                } else if (line[2] == "false") {
+                                                    data_type[mem.name].request = false;
+                                                }
+                                            } else {
+                                                Elog(line[1] + `: datatype "${mem.name}" was not found in datatype`);
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    Elog(line[1] + `: sister not found`);
                                 }
                                 break;
                             case "":
@@ -2078,17 +2320,17 @@ if (!/\\$/gm.test(mainpath)) {
                                     if (th.request) {
                                         th.main(line.join(" ").replace(/^\{|\}$/gm, ""), mainpath, door, variable, comment, declare, module, global, path.join(__dirname, "tools.js"));
                                     } else {
-                                        console.error(line[0] + `: The module has not been validated`)
+                                        Elog(line[0] + `: The module has not been validated`)
                                     }
                                 } else {
-                                    console.error(line[0] + `: Not registered command`);
+                                    Elog(line[0] + `: Not registered command`);
                                 }
                                 break;
                         }
                     }
                     // du
                 } else {
-                    console.error(`File ${door.call[cl]} does not exist.`)
+                    Elog(`File ${door.call[cl]} does not exist.`)
                 }
             } else if (door.call[cl] == "clear") {
                 variable = "";
@@ -2096,11 +2338,11 @@ if (!/\\$/gm.test(mainpath)) {
                 comment = "";
                 comment = [];
             } else {
-                console.error(`${door[cl]}: The executable must have a.du permission`);
+                Elog(`${door[cl]}: The executable must have a.du permission`);
             }
         }
     } else {
-        console.error(`In the directory "${mainpath}" there should be a file "Door.json"`);
+        Elog(`In the directory "${mainpath}" there should be a file "Door.json"`);
     }
 
 
