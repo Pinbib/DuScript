@@ -1,5 +1,6 @@
 module.exports = (body, mainpath, door, variable, comment, declare, modul, global, tool) => {
     const { Variable, Formation } = require(tool);
+    const Elog = require("console").error;
     var data = body.split(" ");
 
     let newname = data[4];
@@ -18,3 +19,4 @@ module.exports = (body, mainpath, door, variable, comment, declare, modul, globa
         Elog(newname + `: unregistered global name`)
     }
 }
+// new

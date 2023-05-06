@@ -1,7 +1,7 @@
 module.exports = (body, mainpath, door, variable, comment, declare, modul, global, tool) => {
     const { Variable, Formation } = require(tool);
     var data = body.split(" ");
-
+    const Elog = require("console").error;
     function random(max) {
         let rs = Math.ceil(Math.random() * max);
         return rs;
@@ -27,3 +27,4 @@ module.exports = (body, mainpath, door, variable, comment, declare, modul, globa
             break;
     }
 };
+// random

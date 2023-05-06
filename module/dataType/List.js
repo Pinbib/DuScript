@@ -1,6 +1,7 @@
 module.exports = (body, mainpath, door, variable, comment, declare, modul, global, tool) => {
     const { Variable, Formation } = require(tool);
     var data = body.split(" ");
+    const Elog = require("console").error;
 
     let name = data[1];
     let newdata = data.slice(4).join(" ");
@@ -21,3 +22,4 @@ module.exports = (body, mainpath, door, variable, comment, declare, modul, globa
 
     return re;
 }
+// List

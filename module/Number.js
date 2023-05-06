@@ -1,5 +1,6 @@
 module.exports = (body, mainpath, door, variable, comment, declare, modul, global, tool) => {
     const { Variable, Formation } = require(tool);
+    const Elog = require("console").error;
     let data = body.split(" ");
 
     switch (data[1]) {
@@ -17,3 +18,4 @@ module.exports = (body, mainpath, door, variable, comment, declare, modul, globa
             break;
     }
 }
+// Number

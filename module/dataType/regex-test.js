@@ -7,7 +7,7 @@ module.exports = (body, mainpath, door, variable, comment, declare, modul, globa
         Formation.var(
             variable, Formation.com(
                 comment, Formation.var(
-                    variable, data.slice(5).join(" ")
+                    variable, data.slice(6).join(" ")
                 )
             )
         )
@@ -18,3 +18,4 @@ module.exports = (body, mainpath, door, variable, comment, declare, modul, globa
         return false;
     }
 }
+// regex-test

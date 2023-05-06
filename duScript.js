@@ -2358,3 +2358,5 @@ if (!/\\$/gm.test(mainpath)) {
 //     log(await prompt("Press enter to finish..."))
 // };
 // ending()
+
+// :)

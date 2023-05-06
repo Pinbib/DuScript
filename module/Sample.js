@@ -1,6 +1,7 @@
 module.exports = (body, mainpath, door, variable, comment, declare, modul, global, tool) => {
     const { Variable, Formation } = require(tool);
     var data = body.split(" ");
+    const Elog = require("console").error;
 
     if (typeof global.Sample == "undefined") {
         global.Sample = {
@@ -16,7 +17,10 @@ module.exports = (body, mainpath, door, variable, comment, declare, modul, globa
         };
     };
 
-    let name = data[1];
-    let bod = data.slice(2).join(" ").replace(/^\(|\)$/gm, "").replace(/\,/gm, " ").split(" ");
-    global.Sample[name] = bod;
+    if (data.length > 1) {
+        let name = data[1];
+        let bod = data.slice(2).join(" ").replace(/^\(|\)$/gm, "").replace(/\,/gm, " ").split(" ");
+        global.Sample[name] = bod;
+    }
 }
+// Sample

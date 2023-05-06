@@ -1,6 +1,7 @@
 module.exports = (body, mainpath, door, variable, comment, declare, modul, global, tool) => {
     const fs = require("fs");
     const path = require("path")
+    const Elog = require("console").error;
     const { Variable } = require(tool);
     var data = body.split(" ");
 
@@ -40,3 +41,4 @@ module.exports = (body, mainpath, door, variable, comment, declare, modul, globa
             Elog(`Command "${data[1]}" from module fs was not found`)
     }
 };
+// fs
