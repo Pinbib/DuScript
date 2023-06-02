@@ -5,4 +5,6 @@
 /module/onUpdate.js
 /module/interface.js
 /module/window.js
+/module/app.js
+/module/import.js
 /exe/odl

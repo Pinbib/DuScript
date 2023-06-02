@@ -48,4 +48,37 @@ class Formation {
     };
 };
 
-module.exports = { Variable, Formation };
+class Module {
+    constructor(name = "", main = (body, mainpath, door, variable, comment, declare, modul, global, tool) => { }, request) {
+        this.name = name;
+        this.main = main;
+        this.request = request;
+    }
+    get Name() {
+        return this.name;
+    }
+    set Name(value) {
+        return value;
+    }
+    get Main() {
+        return this.main;
+    }
+    set Main(value) {
+        return value;
+    }
+    get Request() {
+        return this.request;
+    }
+    set Request(value) {
+        return value;
+    }
+    add(modul) {
+        if (this.request !== undefined) {
+            modul[this.name] = { main: this.Main, request: this.request }
+        } else {
+            modul[this.name] = { main: this.Main, request: true }
+        }
+    }
+}
+
+module.exports = { Variable, Formation, Module };
