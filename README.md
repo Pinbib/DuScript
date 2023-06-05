@@ -18,7 +18,7 @@ Next, to find out where the package was installed, use the command:
 
 ```npm list -g duscript --depth=0 -p```
 
-Now you need to open the folder that you received with the above command, open the /exe folder there will be two files duScriptWindows.exe and duScriptMac.exe select the desired file for your operating system and run it you will be asked for the username where npm was installed, after entering press enter if everything was done correctly, then you should have created a du.bat file, you need to transfer it to the C:/Windows/System32 folder if you are on Windows and if on Mac then /usr/local/bin if you did everything correctly, now when you enter " du ./test.txt" on the command line, you should get "The executable must have a .du permission".
+Now you need to open the folder that you received with the above command, open the /exe folder there will be two files duScriptWindows.exe and duScriptMac.exe select the desired file for your operating system and run it you will be asked for the username where npm was installed, after entering press enter if everything was done correctly, then you should have created a dus.bat file, you need to transfer it to the C:/Windows/System32 folder if you are on Windows and if on Mac then /usr/local/bin if you did everything correctly, now when you enter " dus ./test.txt" on the command line, you should get "The executable must have a .du permission".
 
 Update: 
 
