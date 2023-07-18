@@ -1,5 +1,7 @@
 # DuScript
 
+<span style="color: red;">__This documentation is only valid for npm version: 0.3.0 and github commit: 7312623__</span>
+
 <img src="duScript.ico" width="500px" height="500px">
 
 The purpose of creating this language was an experiment to find out their strength. The peculiarity of this language is the modules unlimited by syntax.

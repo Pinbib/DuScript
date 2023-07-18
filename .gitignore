@@ -1,10 +1,8 @@
 /.vs
-/node_modules
 /src
+/old
 /test
-/module/onUpdate.js
-/module/interface.js
-/module/window.js
-/module/app.js
-/module/import.js
-/exe/odl
+/du.bat
+/Declare
+/Approve
+/node_modules

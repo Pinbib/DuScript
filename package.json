@@ -1,6 +1,6 @@
 {
   "name": "duscript",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "The purpose of creating this language was an experiment to find out their strength. The peculiarity of this language is the modules unlimited by syntax.",
   "main": "duScript.js",
   "scripts": {},
@@ -16,6 +16,9 @@
   "homepage": "https://github.com/Pinbib/DuScript#readme",
   "dependencies": {
     "async-prompt": "^1.0.1",
+    "chalk": "^2.4.2",
+    "expr-eval": "^2.0.2",
+    "mathjs": "^11.8.2",
     "prompt-sync": "^4.2.0",
     "sync-request": "^6.1.0"
   },
