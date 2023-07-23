@@ -20,10 +20,10 @@ module.exports = (text = [""], Com, line = 0) => {
                         case "variable":
                             break;
                         default:
-                            Console.gerror("Unknown declaration type.", ["From: DuScript interpreter.", "Worker: _declare", "?: " + type, "Line: " + line])
+                            Console.gerror("Unknown declaration type.", ["From: DuScript interpreter.", "Worker: _declare", "?: " + type, "Line: " + line]);
                             work = false;
                             break;
-                    }
+                    };
                 } else {
                     Console.gerror("You cannot declare void.", ["From: DuScript interpreter.", "Worker: _declare", "Line: " + line]);
                     work = false;

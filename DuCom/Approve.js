@@ -32,19 +32,19 @@ class Approve {
                     fs.writeFileSync(path.join(this.src, variable.name + ".var"), variable.type + " " + variable.value);
                 } else {
                     Console.gerror(`You cannot change the type of variable \"${this.Get(variable.name).type}\" to \"${variable.type}\".`, ["From: [Approve] module.", "Command: Approve.Set"]);
-                }
-            }
+                };
+            };
         } else {
-            Console.gerror("The variable storage was not initialized.", ["From: [Approve] module.", "Command: Approve.Set"])
+            Console.gerror("The variable storage was not initialized.", ["From: [Approve] module.", "Command: Approve.Set"]);
         };
     };
     Del(name = "") {
         if (fs.existsSync(this.src)) {
             if (fs.existsSync(path.join(this.src, name + ".var"))) {
                 fs.unlinkSync(path.join(this.src, name + ".var"));
-            }
+            };
         } else {
-            Console.gerror("The variable storage was not initialized.", ["From: [Approve] module.", "Command: Approve.Del"])
+            Console.gerror("The variable storage was not initialized.", ["From: [Approve] module.", "Command: Approve.Del"]);
         };
     }
     tu(variable = { type: "", value: "" }) {
@@ -98,9 +98,6 @@ class Approve {
                 };
                 return variable;
             default:
-                if (variable.value == "null") {
-                    variable.value = null;
-                };
                 return variable;
         };
     };
@@ -116,13 +113,13 @@ class Approve {
                         value = value[index];
                     } else {
                         return null;
-                    }
+                    };
                 } else if (value && value.hasOwnProperty(property)) {
                     value = value[property];
                 } else {
                     return null;
-                }
-            }
+                };
+            };
 
             return value;
         };

@@ -15,11 +15,11 @@ class Declare {
                 };
                 return func;
             } else {
-                Console.gerror(`The function ${name} was not declared.`, ["From: [Declare] module.", "Command: Declare.Get"])
-            }
+                Console.gerror(`The function ${name} was not declared.`, ["From: [Declare] module.", "Command: Declare.Get"]);
+            };
         } else {
             Console.gerror("The function storage was not initialized.", ["From: [Declare] module.", "Command: Declare.Get"]);
-        }
+        };
     };
     Set(declare = { name: "", value: "" }) {
         if (fs.existsSync(this.src)) {

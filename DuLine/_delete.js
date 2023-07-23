@@ -14,7 +14,7 @@ module.exports = (text = [""], Com, line = 0) => {
                     Com.Approve.Del(text[3]);
                 } else {
                     Console.gerror("Not know type of removal.", ["From: DuScript interpreter.", "Worker: _delete", "?: " + text[1], "Line: " + line]);
-                }
+                };
             } else {
                 Console.gerror("You cannot set a blank value to remove.", ["From: DuScript interpreter.", "Worker: _delete", "Line: " + line]);
             }

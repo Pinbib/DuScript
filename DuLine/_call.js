@@ -16,8 +16,8 @@ module.exports = (text = [""], Com, line = 0) => {
                         console.log(Com.Approve.tu(Com.Approve.Get(text[2])).value);
                         break;
                     default:
-                        Console.gerror("Unknown call type.", ["From: DuScript interpreter.", "Worker: _call", "?: " + type, "Line: " + line])
-                }
+                        Console.gerror("Unknown call type.", ["From: DuScript interpreter.", "Worker: _call", "?: " + type, "Line: " + line]);
+                };
             } else {
                 Console.gerror("You cannot leave the call value empty.", ["From: DuScript interpreter.", "Worker: _call", "Line: " + line]);
             };

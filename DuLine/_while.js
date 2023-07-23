@@ -30,7 +30,7 @@ module.exports = (text = [""], Com, line = 0) => {
             } else {
                 Console.gerror("The logical expression must end with the End command.", ["From: DuScript interpreter.", "Worker: _while", "Line: " + line]);
                 work = false;
-            }
+            };
         } else {
             Console.gerror("A logical expression cannot be empty.", ["From: DuScript interpreter.", "Worker: _while", "Line: " + line]);
             work = false;

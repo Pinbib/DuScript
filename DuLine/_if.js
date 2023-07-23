@@ -23,11 +23,11 @@ module.exports = (text = [""], Com, line = 0) => {
             } else {
                 Console.gerror("The logical expression must end with the End command.", ["From: DuScript interpreter.", "Worker: _if", "Line: " + line]);
                 work = false;
-            }
+            };
         } else {
             Console.gerror("A logical expression cannot be empty.", ["From: DuScript interpreter.", "Worker: _if", "Line: " + line]);
             work = false;
-        }
+        };
     } else {
         Console.gerror("A command was executed that was not invoked in the line.", ["From: DuScript interpreter.", "Worker: _if", "?: " + text.join(" "), "Line: " + line]);
         work = false;

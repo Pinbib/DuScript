@@ -1,5 +1,6 @@
 const Console = require("../Tool/Console");
 const DuCom = require("../DuCom/DuCom");
+const fs = require("fs");
 
 module.exports = (text = [""], Com, line = 0) => {
     let work = true;

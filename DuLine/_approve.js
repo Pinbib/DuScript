@@ -36,7 +36,7 @@ module.exports = (text = [""], Com, line = 0) => {
                                 } else if (text[4] == "false") {
                                     Com.Approve.Set({ name: name, type: "Bool", value: "false" });
                                 } else {
-                                    Console.gerror("The value of a variable with type Bool is not allowed.", ["From: DuScript interpreter.", "Worker: _approve", "?: " + text[4], "Line: " + line])
+                                    Console.gerror("The value of a variable with type Bool is not allowed.", ["From: DuScript interpreter.", "Worker: _approve", "?: " + text[4], "Line: " + line]);
                                 };
                             } else {
                                 Com.Approve.Set({ name: name, type: "Bool", value: "null" });
@@ -52,7 +52,7 @@ module.exports = (text = [""], Com, line = 0) => {
                                         throw new Error();
                                     };
                                 } catch (err) {
-                                    Console.gerror("Unknown error while creating a variable of type Array.", ["From: DuScript interpreter.", "Worker: _approve", "Line: " + line])
+                                    Console.gerror("Unknown error while creating a variable of type Array.", ["From: DuScript interpreter.", "Worker: _approve", "Line: " + line]);
                                     work = false;
                                 };
                             } else {
@@ -64,7 +64,7 @@ module.exports = (text = [""], Com, line = 0) => {
                                     let obj = JSON.parse(Com.Approve.Transform(text.slice(4).join(" ")));
                                     Com.Approve.Set({ name: name, type: "Object", value: JSON.stringify(obj) });
                                 } catch (err) {
-                                    Console.gerror("Unknown error while creating a variable of type Object.", ["From: DuScript interpreter.", "Worker: _approve", "Line: " + line])
+                                    Console.gerror("Unknown error while creating a variable of type Object.", ["From: DuScript interpreter.", "Worker: _approve", "Line: " + line]);
                                     work = false;
                                 };
                             } else {
