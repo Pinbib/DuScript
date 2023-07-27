@@ -112,14 +112,62 @@ if (argv.length > 2) {
                                     };
                                 };
 
+                                if (door.dataType) {
+                                    if (door.dataType.length) {
+                                        Door.dataType = {};
+
+                                        for (var i = 0; i < door.dataType.length; i++) {
+                                            if (typeof door.dataType[i] == "object") {
+                                                if (door.dataType[i].name && typeof door.dataType[i].name == "string") {
+                                                    if (door.dataType[i].from && typeof door.dataType[i].from == "string") {
+                                                        if (/^\#/gm.test(door.module[i].from)) {
+                                                            door.dataType[i].from.replace(/^\#/gm, path.join(path.dirname(argv[1]), "DataType"));
+                                                        }
+
+                                                        if (fs.existsSync(path.resolve(path.join(door.dataType[i].from)))) {
+                                                            let imp = false;
+                                                            try {
+                                                                require(path.resolve(path.join(door.dataType[i].from)));
+                                                                imp = true;
+                                                            } catch (err) {
+                                                                if (err) {
+                                                                    Console.gerror("An error occurred while importing.", ["From: DuScript[Door] launcher.", "?: " + path.resolve(path.join(door.dataType[i].from))]);
+                                                                    throw new Error();
+                                                                };
+                                                            };
+
+                                                            if (imp) {
+                                                                Door.dataType[door.dataType[i].name] = {
+                                                                    line: require(path.resolve(path.join(door.dataType[i].from))),
+                                                                    request: false
+                                                                };
+                                                            };
+                                                        } else {
+                                                            Console.gerror("File not found.", ["From: DuScript[Door] launcher.", "?: " + path.join(src, "Door.json") + "[dataType][" + i + "][from] = " + path.resolve(path.join(door.dataType[i].from))]);
+                                                            throw new Error();
+                                                        }
+                                                    } else {
+                                                        Console.gerror("Each dataType must have a 'from' field and it must be a string.", ["From: DuScript[Door] launcher.", "?: " + path.join(src, "Door.json") + "[dataType][" + i + "][from]"]);
+                                                        throw new Error();
+                                                    };
+                                                } else {
+                                                    Console.gerror("Each dataType must have a 'name' field and it must be a string.", ["From: DuScript[Door] launcher.", "?: " + path.join(src, "Door.json") + "[dataType][" + i + "][name]"]);
+                                                    throw new Error();
+                                                };
+                                            } else {
+                                                Console.gerror("Each 'dataType' element must be an object.", ["From: DuScript[Door] launcher.", "?: " + path.join(src, "Door.json") + "[dataType][" + i + "]"]);
+                                                throw new Error();
+                                            };
+                                        };
+                                    } else {
+                                        Console.gerror("The 'dataType' field must be an array.", ["From: DuScript[Door] launcher.", "?: " + path.join(src, "Door.json") + "[dataType]"]);
+                                        throw new Error();
+                                    };
+                                };
+
                                 for (var i = 0; i < Door.call.length; i++) {
                                     let file = fs.readFileSync(Door.call[i], { encoding: "utf-8" });
-
-                                    if (!Door.module) {
-                                        require("./interpreter").main(file, Door.call[i], ";");
-                                    } else {
-                                        require("./interpreter").door(file, Door.call[i], Door, ";");
-                                    };
+                                    require("./interpreter").door(file, Door.call[i], Door, ";");
                                 };
                             } else {
                                 Console.gerror("File not found in directory Door.json", ["From: DuScript[Door] launcher.", "?: " + path.join(src, "Door.json")]);
@@ -158,6 +206,41 @@ if (argv.length > 2) {
                     console.log(stderr);
                 };
             });
+            break;
+        case "-init":
+            break;
+
+        case "-y-init":
+            fs.writeFileSync("./Door.json", JSON.stringify({
+                call: [
+                    "./main.du"
+                ],
+                module: [
+                    {
+                        from: "./Module/Hello.js",
+                        name: "hello"
+                    }
+                ],
+                dataType: [
+                    {
+                        from: "./dataType/World.js",
+                        name: "world"
+                    }
+                ]
+            }));
+
+            if (fs.existsSync("./Module") && fs.existsSync("./dataType")) {
+                fs.writeFileSync("./Module/Hello.js", "module.exports = (line, src, Com, Door) => { Com.Console.log(\"Hello, \" + Com.Approve.Transform(line.slice(1).join(\" \"))); return true; }");
+                fs.writeFileSync("./dataType/World.js", "module.exports = (line, Com, Door) => { return \"World!\"; };");
+                fs.writeFileSync("./main.du", "father hello;\nmother world;\napprove World = world;\nhello @World;\n// :)");
+            } else {
+                fs.mkdirSync("./Module");
+                fs.mkdirSync("./dataType");
+                fs.writeFileSync("./Module/Hello.js", "module.exports = (line, src, Com, Door) => { Com.Console.log(\"Hello, \" + Com.Approve.Transform(line.slice(1).join(\" \"))); return true; }");
+                fs.writeFileSync("./dataType/World.js", "module.exports = (line, Com, Door) => { return \"World!\"; };");
+                fs.writeFileSync("./main.du", "father hello;\nmother world;\napprove World = world;\nhello @World;\n// :)");
+            };
+
             break;
         default:
             Console.gerror("Unknown executable command.", ["From: DuScript launcher.", "?: " + argv[2]]);
