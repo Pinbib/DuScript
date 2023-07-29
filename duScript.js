@@ -3,6 +3,7 @@ const path = require("path");
 const Console = require("./Tool/Console");
 const date = require("./Tool/Date");
 const { exec } = require("child_process");
+const prompt = require("prompt-sync")();
 
 const argv = process.argv;
 
@@ -207,27 +208,104 @@ if (argv.length > 2) {
                 };
             });
             break;
-        case "-init":
+        case "init":
+            if (true) {
+                try {
+                    let end = false;
+                    let call = [];
+
+                    Console.log("Enter the name of the file in the \"call\" field, after entering, press enter (to finish entering, enter --end):");
+
+                    while (!end) {
+                        let cal = prompt().replace(/\s+/gm, "");
+
+                        if (cal == "") { } else if (cal == "--end") {
+                            end = !end;
+                        } else {
+                            call.push(cal);
+                        };
+                    };
+
+                    if (end) end = !end
+
+                    Console.log("Add modules?(yes/no)");
+
+                    let addModules;
+                    let modules = [];
+
+                    if (prompt().replace(/\s+/gm, "") == "yes") {
+                        addModules = true;
+
+                        Console.log("The first word will be the name of the module, and then the path from where the module will be imported.(to finish entering, enter --end) \nExample: name ./path/to/import/module");
+
+                        while (!end) {
+                            let mo = prompt().trim();
+
+                            if (mo == "") { } else if (mo == "--end") { end = !end; } else {
+                                let m = mo.split(" ");
+
+                                if (mo.length > 1) {
+                                    modules.push({
+                                        name: m[0],
+                                        from: m.slice(1).join(" ")
+                                    });
+                                } else throw new Error();
+                            };
+                        };
+                    } else {
+                        addModules = false;
+                    };
+
+                    if (end) end = !end;
+
+                    Console.log("Add dataType?(yes/no)");
+
+                    let addDataType;
+                    let dataType = [];
+
+                    if (prompt().replace(/\s+/gm, "") == "yes") {
+                        addDataType = true;
+
+                        Console.log("The first word will be the name of the dataType, and then the path from where the dataType will be imported.(to finish entering, enter --end) \nExample: name ./path/to/import/dataType");
+
+                        while (!end) {
+                            let dt = prompt().trim();
+
+                            if (dt == "") { } else if (dt == "--end") { end = !end; } else {
+                                let d = dt.split(" ");
+
+                                if (dt.length > 1) {
+                                    dataType.push({
+                                        name: d[0],
+                                        from: d.slice(1).join(" ")
+                                    });
+                                } else throw new Error();
+                            };
+                        };
+                    } else {
+                        addDataType = false;
+                    };
+
+                    if (call.length > 0) {
+                        let door = {
+                            call: call
+                        };
+
+                        if (addModules) {
+                            door.module = modules
+                        };
+                        if (addDataType) {
+                            door.dataType = dataType;
+                        };
+
+                        fs.writeFileSync("./Door.json", JSON.stringify(door));
+                    } else throw new Error();
+                } catch (err) { if (err) Console.error("An error occurred while initializing the \"Door.json\" file.") };
+            };
             break;
 
         case "-y-init":
-            fs.writeFileSync("./Door.json", JSON.stringify({
-                call: [
-                    "./main.du"
-                ],
-                module: [
-                    {
-                        from: "./Module/Hello.js",
-                        name: "hello"
-                    }
-                ],
-                dataType: [
-                    {
-                        from: "./dataType/World.js",
-                        name: "world"
-                    }
-                ]
-            }));
+            fs.writeFileSync("./Door.json", `{\n    "call": [\n     "./main.du"\n   ],\n    "module": [\n       {\n         "from": "./Module/Hello.js",\n          "name": "hello"\n       }\n     ],\n    "dataType": [\n         {\n             "from": "./dataType/World.js",\n            "name": "world"\n       }\n     ]\n}`);
 
             if (fs.existsSync("./Module") && fs.existsSync("./dataType")) {
                 fs.writeFileSync("./Module/Hello.js", "module.exports = (line, src, Com, Door) => { Com.Console.log(\"Hello, \" + Com.Approve.Transform(line.slice(1).join(\" \"))); return true; }");
@@ -240,7 +318,6 @@ if (argv.length > 2) {
                 fs.writeFileSync("./dataType/World.js", "module.exports = (line, Com, Door) => { return \"World!\"; };");
                 fs.writeFileSync("./main.du", "father hello;\nmother world;\napprove World = world;\nhello @World;\n// :)");
             };
-
             break;
         default:
             Console.gerror("Unknown executable command.", ["From: DuScript launcher.", "?: " + argv[2]]);
