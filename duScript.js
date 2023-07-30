@@ -69,7 +69,7 @@ if (argv.length > 2) {
                                                 if (door.module[i].name && typeof door.module[i].name == "string") {
                                                     if (door.module[i].from && typeof door.module[i].from == "string") {
                                                         if (/^\#/gm.test(door.module[i].from)) {
-                                                            door.module[i].from.replace(/^\#/gm, path.join(path.dirname(argv[1]), "Module"));
+                                                            door.module[i].from = path.join(__dirname, "Module", door.module[i].from.replace(/^\#/gm, "")) + ".js";
                                                         }
 
                                                         if (fs.existsSync(path.resolve(path.join(door.module[i].from)))) {
@@ -122,7 +122,7 @@ if (argv.length > 2) {
                                                 if (door.dataType[i].name && typeof door.dataType[i].name == "string") {
                                                     if (door.dataType[i].from && typeof door.dataType[i].from == "string") {
                                                         if (/^\#/gm.test(door.module[i].from)) {
-                                                            door.dataType[i].from.replace(/^\#/gm, path.join(path.dirname(argv[1]), "DataType"));
+                                                            door.dataType[i].from = path.join(__dirname, "DataType", door.dataType[i].from.replace(/^\#/gm, "")) + ".js";
                                                         }
 
                                                         if (fs.existsSync(path.resolve(path.join(door.dataType[i].from)))) {
