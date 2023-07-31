@@ -75,7 +75,7 @@ function door(text, src, Door, separator = "") {
 
     const Com = {
         Approve: new DuCom.Approve("./Approve"),
-        Declare: new DuCom.Declare("./Declare"),
+        Declare: new DuCom._Declare("./Declare"),
         Console: Console,
         duScript: door
     };
@@ -106,17 +106,17 @@ function door(text, src, Door, separator = "") {
                 };
                 break;
             case "call":
-                if (!DuLine._call(line, Com, i + 1)) {
+                if (!DuLine.__call(line, Com, Door, i + 1)) {
                     stop();
                 };
                 break;
             case "if":
-                if (!DuLine._if(line, Com, i + 1)) {
+                if (!DuLine.__if(line, Com, Door, i + 1)) {
                     stop();
                 };
                 break;
             case "while":
-                if (!DuLine._while(line, Com, i + 1)) {
+                if (!DuLine.__while(line, Com, Door, i + 1)) {
                     stop();
                 };
                 break;
