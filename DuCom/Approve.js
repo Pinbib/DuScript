@@ -121,14 +121,25 @@ class Approve {
                 };
             };
 
-            return value;
+            return value === false ? "false" : value;
         };
 
         return text.replace(/@(\S+)/gm, (match, word) => {
             const words = word.split(".");
             const variableName = words[0];
             const propertyPath = words.slice(1).join(".");
-            const variableValue = this.tu(this.Get(variableName)).value;
+            const variable = this.Get(variableName);
+            let variableValue = variable ? variable.value : null;
+
+            if (variableValue === null || variableValue === undefined) {
+                variableValue = '';
+            } else {
+                variableValue = this.tu(variable).value;
+            };
+
+            if (variableValue === false) {
+                return "false";
+            };
 
             if (propertyPath) {
                 const propertyValue = getPropertyValue(variableValue, propertyPath);

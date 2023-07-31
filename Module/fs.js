@@ -104,6 +104,27 @@ module.exports = (line, src, Com, Door) => {
                         throw new Error();
                     };
                     break;
+                case "exist":
+                    if (line[2]) {
+                        let endPath = line.indexOf("::");
+                        if (endPath > -1) {
+                            let src = Com.Approve.Transform(line.slice(2, endPath).join(" "));
+                            let data = Com.Approve.Transform(line.slice(endPath + 1).join(" "));
+
+                            if (fs.existsSync(src)) {
+                                Com.Approve.Set({ name: data, type: "Bool", value: true });
+                            } else {
+                                Com.Approve.Set({ name: data, type: "Bool", value: false });
+                            }
+                        } else {
+                            Com.Console.gerror("The end of the path was not specified.", ["From:  Module fs", "?: " + line.join(" ")]);
+                            throw new Error();
+                        };
+                    } else {
+                        Com.Console.gerror("No reading path was specified.", ["From:  Module fs", "?: " + line.join(" ")]);
+                        throw new Error();
+                    };
+                    break;
                 default:
                     Com.Console.gerror("The executable command is not known.", ["From:  Module fs", "?: " + line.join(" ")]);
                     throw new Error();
