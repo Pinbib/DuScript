@@ -302,7 +302,7 @@ Will: 1
 To run several files and connect between them, when specifying the src, you do not need to specify the path to the desired file, but you need to specify the path to the folder with the files and at the end you must add "/" and the specified folder should contain the file Door.json.
 
 Sample file Door.json:
-```
+```JSON
 {
     "call": [
         "1.du",
@@ -326,7 +326,7 @@ Will: 1
 You can also close access to variables and comments from other files with the "clear" command, here is an example:
 
 Door.json:
-```
+```JSON
 {
     "call": [
         "1.du",
@@ -356,7 +356,7 @@ Modules are imported by adding a "module" block to the Door.json file.
 
 Sample:
 
-```
+```JSON
 "module": [
         {
             "name": "fs",
@@ -382,7 +382,7 @@ Let's create a file cld.js (c - creat, l - log, d - deleat)
 Import it into the Door.json file.
 
 Door.json:
-```
+```JSON
 {
     "call": [
         "a.du"
@@ -399,7 +399,7 @@ Door.json:
 Let's create the module itself in the cld.js file.
 
 cld.js:
-```
+```javascript
 module.exports = (body, mainpath, door, variable, comment, declare, modul, global, tool) => {
     const { Variable } = require(tool);
     var data = body.split(" ");
@@ -429,7 +429,7 @@ We allow the import of the module, and then we make the call.
 fs - is a module for manipulating the file system.
 
 Import:
-```
+```JSON
     {
         "module": [
             {
@@ -509,7 +509,7 @@ Will: [1.du, text.txt]
 Number - allows you to manipulate numbers, but the main task is to convert a string to a number.
 
 Import:
-```
+```JSON
     "module": [
         {
             "name": "Number",
@@ -533,7 +533,7 @@ value - The string to be converted.
 prompt - Used for console requests.
 
 Import:
-```
+```JSON
     "module": [
         {
             "name": "prompt",
@@ -571,7 +571,7 @@ end - the value after which the request will end.
 random - Used to get a random integer or array element.
 
 Import: 
-```
+```JSON
     "module": [
         {
             "name": "random",
@@ -607,7 +607,7 @@ array - An array from which we will receive an element.
 request - Used for requests by url.
 
 Import:
-```
+```JSON
     "module": [
         {
             "name": "request",
@@ -634,7 +634,7 @@ Additional data types are imported in the same way as modules but in the DataTyp
 
 Sample:
 
-```
+```JSON
     "DataType":[
         {
             "name": "List",
@@ -658,7 +658,7 @@ Now we can use the "List" data type in this way:
 
 When we try to display a newList, we will get an object:
 
-```
+```JSON
     {
         newList0: 1,
         newList1: 2,
@@ -680,7 +680,7 @@ List - improved array, with easier handling.
 
 Import:
 
-```
+```JSON
     "DataType":[
         {
             "name": "List",
@@ -697,7 +697,7 @@ We can use the List data type like this:
 
 When we try to display a newList, we will get an object:
 
-```
+```JSON
     {
         newList0: 1,
         newList1: 2,
@@ -716,7 +716,7 @@ Will: 1
 regex-test - Used to validate text through regular expressions.
 
 Import: 
-```
+```JSON
     "DataType":[
         {
             "name": "regex",
@@ -744,7 +744,7 @@ To register such a command, you can do it like this using the "Sample" example -
 
 Door.json:
 
-```
+```JSON
 {
     "call": [
         "file.du"
@@ -779,7 +779,7 @@ Let's create our own handler function for "new" which will return true if there 
 
 newFunction.js:
 
-```
+```javascript
 odule.exports = (body, mainpath, door, variable, comment, declare, modul, global, tool) => {
     const { Variable, Formation } = require(tool);
     var data = body.split(" ");
@@ -804,7 +804,7 @@ We check if there is a newFunction block in the Global object, if not, then we r
 
 Door.json:
 
-```
+```JSON
 {
     "call": [
         "file.du"
@@ -847,7 +847,7 @@ An example of creating and running a group.
 
 Door.json:
 
-```
+```JSON
 {
     "call": [
         "file.du"
@@ -895,7 +895,7 @@ An example of creating and running a group.
 
 Door.json:
 
-```
+```JSON
 {
     "call": [
         "file.du"
@@ -941,7 +941,7 @@ An example of creating and running a group.
 
 Door.json:
 
-```
+```JSON
 {
     "call": [
         "file.du"
@@ -1019,7 +1019,7 @@ An example of creating and running a group.
 
 Door.json:
 
-```
+```JSON
 {
     "call": [
         "file.du"
@@ -1043,7 +1043,7 @@ We can't do anything with this variable since it's not in the variable object bu
 
 Door.json:
 
-```
+```JSON
 {
     "call": [
         "file.du"
