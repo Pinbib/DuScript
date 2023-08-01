@@ -320,7 +320,34 @@ if (argv.length > 2) {
             };
             break;
         default:
+            // try {
+            //     if (fs.existsSync("./Door.json")) {
+            //         let door = require(path.join(path.resolve("./"), "Door.json"));
+
+            //         if (door.command) {
+            //             if (door.command[argv[2]]) {
+            //                 if (typeof door.command[argv[2]] == "string") {
+            //                     exec(door.command[argv[2]], (err, stdout, stderr) => {
+            //                         if (err) console.log(err);
+            //                         if (stdout) console.log(stdout);
+            //                         if (stderr) console.log(stderr);
+            //                     });
+            //                 } else if (Array.isArray(door.command[argv[2]])) {
+            //                     exec(door.command[argv[2]].join(" "), (err, stdout, stderr) => {
+            //                         if (err) console.log(err);
+            //                         if (stdout) console.log(stdout);
+            //                         if (stderr) console.log(stderr);
+            //                     });
+            //                 } else throw new Error();
+            //             } else throw new Error();
+            //         } else throw new Error();
+            //     } else throw new Error();
+            // } catch (err) {
+            //     if (err) {
             Console.gerror("Unknown executable command.", ["From: DuScript launcher.", "?: " + argv[2]]);
+            //     };
+            // }
+
             break;
     };
 } else {
