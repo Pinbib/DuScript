@@ -78,7 +78,7 @@ function door(text, src, Door, separator = "") {
         Declare: new DuCom._Declare("./Declare"),
         Console: Console,
         duScript: door,
-        Module: DuCom.Module(Door)
+        Module: new DuCom.Module(Door)
     };
 
     let lines = text.split(new RegExp(`\\${separator}\\r?\\n?`)).filter(val => val.trim() !== "");

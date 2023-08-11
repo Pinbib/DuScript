@@ -7,6 +7,31 @@ const prompt = require("prompt-sync")();
 
 const argv = process.argv;
 
+let Setting;
+
+if (fs.existsSync(path.join(__dirname, "Setting.json"))) {
+    Setting = require(path.join(__dirname, "Setting.json"));
+} else {
+    fs.writeFileSync(path.join(__dirname, "Setting.json"), `{
+        "packageInstall": false
+    }`);
+
+    Setting = {
+        "packageInstall": false
+    };
+};
+
+if (!Setting.packageInstall) {
+    exec("npm install", (err, stdout, stderr) => {
+        if (err) Console.error("An error occurred while installing dependencies.");
+        if (stderr) Console.error("An error occurred while trying to output data from npm.");
+
+        Setting.packageInstall = true;
+        Console.confirm("All dependencies were installed.");
+        fs.writeFileSync(path.join(__dirname, "Setting.json"), JSON.stringify(Setting));
+    });
+};
+
 if (!fs.existsSync("./Approve")) {
     fs.mkdirSync("./Approve");
     Console.gconfirm("The variable storage location was initialized.", [path.join(argv[1], "Approve")]);
@@ -121,7 +146,7 @@ if (argv.length > 2) {
                                             if (typeof door.dataType[i] == "object") {
                                                 if (door.dataType[i].name && typeof door.dataType[i].name == "string") {
                                                     if (door.dataType[i].from && typeof door.dataType[i].from == "string") {
-                                                        if (/^\#/gm.test(door.module[i].from)) {
+                                                        if (/^\#/gm.test(door.dataType[i].from)) {
                                                             door.dataType[i].from = path.join(__dirname, "DataType", door.dataType[i].from.replace(/^\#/gm, "")) + ".js";
                                                         }
 
@@ -320,33 +345,36 @@ if (argv.length > 2) {
             };
             break;
         default:
-            // try {
-            //     if (fs.existsSync("./Door.json")) {
-            //         let door = require(path.join(path.resolve("./"), "Door.json"));
+            try {
+                if (fs.existsSync("./Door.json")) {
+                    let door = require(path.join(path.resolve("./"), "Door.json"));
 
-            //         if (door.command) {
-            //             if (door.command[argv[2]]) {
-            //                 if (typeof door.command[argv[2]] == "string") {
-            //                     exec(door.command[argv[2]], (err, stdout, stderr) => {
-            //                         if (err) console.log(err);
-            //                         if (stdout) console.log(stdout);
-            //                         if (stderr) console.log(stderr);
-            //                     });
-            //                 } else if (Array.isArray(door.command[argv[2]])) {
-            //                     exec(door.command[argv[2]].join(" "), (err, stdout, stderr) => {
-            //                         if (err) console.log(err);
-            //                         if (stdout) console.log(stdout);
-            //                         if (stderr) console.log(stderr);
-            //                     });
-            //                 } else throw new Error();
-            //             } else throw new Error();
-            //         } else throw new Error();
-            //     } else throw new Error();
-            // } catch (err) {
-            //     if (err) {
-            Console.gerror("Unknown executable command.", ["From: DuScript launcher.", "?: " + argv[2]]);
-            //     };
-            // }
+                    if (door.command) {
+                        if (door.command[argv[2]]) {
+                            if (typeof door.command[argv[2]] == "string") {
+                                exec(door.command[argv[2]], (err, stdout, stderr) => {
+                                    if (err) console.log(err);
+                                    if (stdout) console.log(stdout);
+                                    if (stderr) console.log(stderr);
+                                });
+                            } else if (Array.isArray(door.command[argv[2]])) {
+                                exec(door.command[argv[2]].join(" "), (err, stdout, stderr) => {
+                                    if (err) console.log(err);
+
+                                    if (stdout) console.log(stdout);
+
+                                    if (stderr) console.log(stderr);
+
+                                });
+                            } else throw new Error();
+                        } else throw new Error();
+                    } else throw new Error();
+                } else throw new Error();
+            } catch (err) {
+                if (err) {
+                    Console.gerror("Unknown executable command.", ["From: DuScript launcher.", "?: " + argv[2]]);
+                };
+            };
 
             break;
     };

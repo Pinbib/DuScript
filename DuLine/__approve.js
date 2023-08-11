@@ -72,7 +72,14 @@ module.exports = (text = [""], Com, Door, line = 0) => {
                             };
                         } else if (Door.dataType[text[3]]) {
                             if (Door.dataType[text[3]].request) {
-                                Com.Approve.Set({ name: name, type: text[3], value: Door.dataType[text[3]].line(text, Com, Door) });
+                                let va = Door.dataType[text[3]].line(text, Com, Door);
+
+                                if (va.type && va.value) {
+                                    Com.Approve.Set({ name: name, type: va.type, value: va.value });
+                                } else {
+                                    Console.gerror("Error!", ["From: DuScript[Door] interpreter.", "Worker: __approve", "Line: " + line, "?: dataType " + text[3]]);
+                                    work = false;
+                                }
                             } else {
                                 Console.ginfo("The dataType was not requested.", ["From: DuScript interpreter.", "Line: " + line]);
                                 work = false;
