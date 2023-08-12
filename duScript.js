@@ -4,6 +4,7 @@ const Console = require("./Tool/Console");
 const date = require("./Tool/Date");
 const { exec } = require("child_process");
 const prompt = require("prompt-sync")();
+const os = require('os');
 
 const argv = process.argv;
 
@@ -30,6 +31,15 @@ if (!Setting.packageInstall) {
         Console.confirm("All dependencies were installed.");
         fs.writeFileSync(path.join(__dirname, "Setting.json"), JSON.stringify(Setting));
     });
+};
+
+let Save;
+
+if (fs.existsSync(path.join(__dirname, "Save.json"))) {
+    Save = require(path.join(__dirname, "Save.json"));
+} else {
+    fs.writeFileSync(path.join(__dirname, "Save.json"), "{}");
+    Save = {};
 };
 
 if (!fs.existsSync("./Approve")) {
@@ -218,7 +228,20 @@ if (argv.length > 2) {
             Console.gconfirm(argv[1], [])
             break;
         case "-gen":
-            fs.writeFileSync(`./du.bat`, `@echo off\nnode ${argv[1]} %*`)
+            fs.writeFileSync(`./du.bat`, `@echo off\nnode ${argv[1]} %*`);
+            // if (os.platform() === 'win32') {
+            //     fs.writeFileSync(
+            //         'du.bat',
+            //         `@echo off\nnode ${argv[1]} %*`
+            //     );
+            // } else {
+            //     fs.writeFileSync(
+            //         'du',
+            //         `#!/bin/bash\n\nnode ${argv[1]} $@`
+            //     );
+            //     fs.chmodSync('du', '755');
+            //     exec("chmod +x du", (err, st, std) => { if (err) console.log(err); if (st) console.log(st); if (std) console.log(std) });
+            // };
             break;
         case "update":
             exec("npm update -g duscript", (err, stdout, stderr) => {
@@ -334,16 +357,58 @@ if (argv.length > 2) {
 
             if (fs.existsSync("./Module") && fs.existsSync("./dataType")) {
                 fs.writeFileSync("./Module/Hello.js", "module.exports = (line, src, Com, Door) => { Com.Console.log(\"Hello, \" + Com.Approve.Transform(line.slice(1).join(\" \"))); return true; }");
-                fs.writeFileSync("./dataType/World.js", "module.exports = (line, Com, Door) => { return \"World!\"; };");
+                fs.writeFileSync("./dataType/World.js", "module.exports = (line, Com, Door) => { return {value: \"World!\", type: \"String\"}; };");
                 fs.writeFileSync("./main.du", "father hello;\nmother world;\napprove World = world;\nhello @World;\n// :)");
             } else {
                 fs.mkdirSync("./Module");
                 fs.mkdirSync("./dataType");
                 fs.writeFileSync("./Module/Hello.js", "module.exports = (line, src, Com, Door) => { Com.Console.log(\"Hello, \" + Com.Approve.Transform(line.slice(1).join(\" \"))); return true; }");
-                fs.writeFileSync("./dataType/World.js", "module.exports = (line, Com, Door) => { return \"World!\"; };");
+                fs.writeFileSync("./dataType/World.js", "module.exports = (line, Com, Door) => { return {value: \"World!\", type: \"String\"}; };");
                 fs.writeFileSync("./main.du", "father hello;\nmother world;\napprove World = world;\nhello @World;\n// :)");
             };
             break;
+
+        case "save":
+            if (argv[3]) {
+                Save[argv[3]] = {};
+
+                function save(src, sv) {
+                    fs.readdirSync(src, { encoding: "utf-8" }).forEach((val) => {
+                        let stat = fs.statSync(path.join(src, val));
+
+                        if (stat.isFile()) {
+                            sv[val] = fs.readFileSync(path.join(src, val), { encoding: "utf-8" });
+                        } else if (stat.isDirectory()) {
+                            sv[val] = {};
+
+                            save(path.join(src, val), sv[val]);
+                        }
+                    });
+                };
+
+                save("./", Save[argv[3]]);
+            } else Console.gerror("No save name was specified.", ["From: DuScript launcher."]);
+            break;
+
+        case "load":
+            if (argv[3]) {
+                if (Save[argv[3]]) {
+                    function load(src, sv) {
+                        Object.keys(sv).forEach((val) => {
+                            if (typeof sv[val] == "string") {
+                                fs.writeFileSync(path.join(src, val), sv[val], { encoding: "utf-8" });
+                            } else if (typeof sv[val] == "object") {
+                                if (!fs.existsSync(path.join(src, val))) fs.mkdirSync(path.join(src, val));
+                                load(path.join(src, val), sv[val]);
+                            };
+                        });
+                    };
+
+                    load("./", Save[argv[3]]);
+                } else Console.gerror("No save found with this name.", ["From: DuScript launcher.", "?: " + argv[3]]);
+            } else Console.gerror("No save name was specified.", ["From: DuScript launcher."]);
+            break;
+
         default:
             try {
                 if (fs.existsSync("./Door.json")) {
@@ -381,6 +446,8 @@ if (argv.length > 2) {
 } else {
     Console.gerror("You did not specify an executable command.", ["From: DuScript launcher."])
 };
+
+fs.writeFileSync(path.join(__dirname, "Save.json"), JSON.stringify(Save));
 
 if (fs.existsSync("./Approve")) {
     fs.readdir("./Approve", (err, dir) => {

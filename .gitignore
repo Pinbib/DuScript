@@ -3,7 +3,9 @@
 /old
 /test
 /du.bat
-/Setting.json
 /Declare
 /Approve
+/Save.json
+/Setting.json
 /node_modules
+/DataType/new.js
