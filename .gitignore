@@ -5,6 +5,7 @@
 /du.bat
 /Declare
 /Approve
+/.vscode
 /Save.json
 /Setting.json
 /node_modules

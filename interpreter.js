@@ -159,4 +159,110 @@ function door(text, src, Door, separator = "") {
     };
 };
 
-module.exports = { main, door };
+function edu(text, src, Door, separator = "") {
+
+    let variable = [];
+    let func = [];
+
+    const Com = {
+        Approve: new DuCom.Approve("./Approve"),
+        Declare: new DuCom._Declare("./Declare"),
+        Console: Console,
+        duScript: door,
+        Module: new DuCom.Module(Door)
+    };
+
+    let lines = text.split(new RegExp(`\\${separator}\\r?\\n?`)).filter(val => val.trim() !== "");
+
+    for (var i = 0; i < lines.length; i++) {
+        function stop() {
+            i = lines.length * 2;
+        };
+
+        let line = lines[i].replace(/\s+/gm, " ").trim().split(" ");
+
+        switch (line[0]) {
+            case "approve":
+                if (!DuLine.__approve(line, Com, Door, i + 1)) {
+                    stop();
+                } else variable.push(line[1]);
+                break;
+            case "print":
+                if (!DuLine._print(line, Com, i + 1)) {
+                    stop();
+                };
+                break;
+            case "declare":
+                if (!DuLine._declare(line, Com, i + 1)) {
+                    stop();
+                } else func.push(line[2]);
+                break;
+            case "call":
+                if (!DuLine.__call(line, Com, Door, i + 1)) {
+                    stop();
+                };
+                break;
+            case "if":
+                if (!DuLine.__if(line, Com, Door, i + 1)) {
+                    stop();
+                };
+                break;
+            case "while":
+                if (!DuLine.__while(line, Com, Door, i + 1)) {
+                    stop();
+                };
+                break;
+            case "delete":
+                if (!DuLine._delete(line, Com, i + 1)) {
+                    stop();
+                };
+                break;
+            case "father":
+                if (!DuLine.__father(line, Com, Door, i + 1)) {
+                    stop();
+                };
+                break;
+            case "mother":
+                if (!DuLine.__mother(line, Com, Door, i + 1)) {
+                    stop();
+                };
+                break;
+            case "export":
+                if (variable.indexOf(line[1]) != -1) {
+                    variable.splice(variable.indexOf(line[1]), 1);
+                };
+                if (func.indexOf[line[1]] != -1) {
+                    func.splice(func.indexOf(line[1]), 1);
+                };
+                break;
+            case "//":
+                break;
+            case "|>>|":
+                break;
+            default:
+                if (Door.module[line[0]]) {
+                    if (Door.module[line[0]].request) {
+                        if (!Door.module[line[0]].line(line, src, Com, Door)) {
+                            stop();
+                        };
+                    } else {
+                        Console.ginfo("The module was not requested.", ["From: DuScript interpreter.", "Module: " + line[0], "Line: " + (i + 1)]);
+                        stop();
+                    };
+                } else {
+                    Console.gerror("Unknown command.", ["From: DuScript interpreter.", "Command: " + line[0], "Line: " + (i + 1)]);
+                    stop();
+                };
+                break;
+        };
+    };
+
+    variable.forEach((val) => {
+        if (fs.existsSync(path.join("./", "Approve", val + ".var"))) fs.unlinkSync(path.join("./", "Approve", val + ".var"));
+    });
+    func.forEach((val) => {
+        if (fs.existsSync(path.join("./", "Declare", val + ".dec"))) fs.unlinkSync(path.join("./", "Declare", val + ".dec"));
+    });
+};
+
+module.exports = { main, door, edu };

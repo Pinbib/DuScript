@@ -7,7 +7,7 @@ module.exports = (text = [""], Com, Door, line = 0) => {
 
     if (text[0] == "if") {
         if (text[1]) {
-            let end = text.indexOf("end");
+            let end = text.indexOf("::");
             if (end > -1) {
                 let exp = text.slice(1, end).join(" ");
                 try {
@@ -21,7 +21,7 @@ module.exports = (text = [""], Com, Door, line = 0) => {
                     };
                 };
             } else {
-                Console.gerror("The logical expression must end with the End command.", ["From: DuScript interpreter.", "Worker: __if", "Line: " + line]);
+                Console.gerror("The logical expression must end with the \"::\" command.", ["From: DuScript interpreter.", "Worker: __if", "Line: " + line]);
                 work = false;
             };
         } else {

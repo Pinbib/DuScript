@@ -75,12 +75,14 @@ if (argv.length > 2) {
                                         Door.call = [];
                                         for (var i = 0; i < door.call.length; i++) {
                                             if (typeof door.call[i] == "string") {
-                                                if (fs.existsSync(path.resolve(door.call[i]))) {
-                                                    Door.call.push(path.resolve(door.call[i]));
-                                                } else {
-                                                    Console.gerror("File not found.", ["From: DuScript[Door] launcher.", "?: " + path.resolve(door.call[i])]);
-                                                    throw new Error();
-                                                };
+                                                if (path.extname(door.call[i]) == ".du" || path.extname(door.call[i]) == ".edu") {
+                                                    if (fs.existsSync(path.resolve(door.call[i]))) {
+                                                        Door.call.push(path.resolve(door.call[i]));
+                                                    } else {
+                                                        Console.gerror("File not found.", ["From: DuScript[Door] launcher.", "?: " + path.resolve(door.call[i])]);
+                                                        throw new Error();
+                                                    };
+                                                } else throw new Error();
                                             } else {
                                                 Console.gerror("Unexplained error.", ["From: DuScript[Door] launcher.", "?: " + path.join(src, "Door.json") + "[call][" + i + "]"]);
                                                 throw new Error();
@@ -202,8 +204,13 @@ if (argv.length > 2) {
                                 };
 
                                 for (var i = 0; i < Door.call.length; i++) {
-                                    let file = fs.readFileSync(Door.call[i], { encoding: "utf-8" });
-                                    require("./interpreter").door(file, Door.call[i], Door, ";");
+                                    if (path.extname(Door.call[i]) == ".du") {
+                                        let file = fs.readFileSync(Door.call[i], { encoding: "utf-8" });
+                                        require("./interpreter").door(file, Door.call[i], Door, ";");
+                                    } else if (path.extname(Door.call[i]) == ".edu") {
+                                        let file = fs.readFileSync(Door.call[i], { encoding: "utf-8" });
+                                        require("./interpreter").edu(file, Door.call[i], Door, ";");
+                                    };
                                 };
                             } else {
                                 Console.gerror("File not found in directory Door.json", ["From: DuScript[Door] launcher.", "?: " + path.join(src, "Door.json")]);
@@ -407,6 +414,17 @@ if (argv.length > 2) {
                     load("./", Save[argv[3]]);
                 } else Console.gerror("No save found with this name.", ["From: DuScript launcher.", "?: " + argv[3]]);
             } else Console.gerror("No save name was specified.", ["From: DuScript launcher."]);
+            break;
+
+        case "-CMD":
+            if (true) {
+                let work = true;
+                Console.gconfirm(`DuScript version: ${require("./package.json").version}.`, []);
+                while (work) {
+                    let comm = prompt();
+                    if (comm != "--end") require("./interpreter").main(comm, "CMD", ";"); else work = false;
+                };
+            };
             break;
 
         default:
