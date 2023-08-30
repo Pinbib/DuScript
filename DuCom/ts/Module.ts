@@ -1,10 +1,13 @@
-var Module = /** @class */ (function () {
-    function Module(Door) {
-        var _a;
-        this.module = {};
-        this.module = (_a = Door.module) !== null && _a !== void 0 ? _a : {};
+class Module {
+    module: object = {};
+    constructor(Door) {
+        this.module = Door.module ?? {};
     }
-    Module.prototype.add = function (name, line, request) {
+
+    add(name: string, line: (line, src, Com, Door) => Boolean): void;
+    add(name: string, line: (line, src, Com, Door) => Boolean, request: Boolean): void;
+
+    add(name: string, line: (line, src, Com, Door) => true | false, request?: Boolean): void {
         if (!this.module[name]) {
             if (typeof line == "function") {
                 if (request) {
@@ -13,45 +16,38 @@ var Module = /** @class */ (function () {
                             line: line,
                             request: true
                         };
-                    }
-                    else if (request == false) {
+                    } else if (request == false) {
                         this.module[name] = {
                             line: line,
                             request: false
                         };
                     }
-                }
-                else {
+                } else {
                     this.module[name] = {
                         line: line,
                         request: true
                     };
-                }
-                ;
-            }
-            ;
-        }
-        ;
+                };
+            };
+        };
     };
-    ;
-    Module.prototype.get = function (name) {
-        var mod = {
+
+    get(name: string): object {
+        let mod = {
             line: NaN,
             request: NaN
         };
+
         if (this.module[name]) {
             mod = this.module[name];
-        }
-        ;
+        };
+
         return mod;
     };
-    ;
-    Module.prototype.delete = function (name) {
-        if (this.module[name])
-            delete this.module[name];
+
+    delete(name): void {
+        if (this.module[name]) delete this.module[name];
     };
-    ;
-    return Module;
-}());
-;
+};
+
 module.exports = Module;

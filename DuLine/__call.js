@@ -10,11 +10,9 @@ module.exports = (text = [""], Com, Door, line = 0) => {
             if (text[2]) {
                 switch (type) {
                     case "func":
-                        try {
-                            Com.Approve.Set({ name: "!", type: "Object", value: Com.Approve.Transform(text.slice(3).join(" ")) });
-                            Com.Declare.Get(text[2], true, Door);
-                            Com.Approve.Del("!")
-                        } catch (err) { }
+                        Com.Approve.Set({ name: "!", type: "Object", value: Com.Approve.Transform(text.slice(3).join(" ")) });
+                        Com.Declare.Get(text[2], true, Door);
+                        Com.Approve.Del("!")
                         break;
                     case "var":
                         console.log(Com.Approve.tu(Com.Approve.Get(text[2])).value);

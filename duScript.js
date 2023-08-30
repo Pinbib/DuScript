@@ -8,31 +8,6 @@ const os = require('os');
 
 const argv = process.argv;
 
-let Setting;
-
-if (fs.existsSync(path.join(__dirname, "Setting.json"))) {
-    Setting = require(path.join(__dirname, "Setting.json"));
-} else {
-    fs.writeFileSync(path.join(__dirname, "Setting.json"), `{
-        "packageInstall": false
-    }`);
-
-    Setting = {
-        "packageInstall": false
-    };
-};
-
-if (!Setting.packageInstall) {
-    exec("npm install", (err, stdout, stderr) => {
-        if (err) Console.error("An error occurred while installing dependencies.");
-        if (stderr) Console.error("An error occurred while trying to output data from npm.");
-
-        Setting.packageInstall = true;
-        Console.confirm("All dependencies were installed.");
-        fs.writeFileSync(path.join(__dirname, "Setting.json"), JSON.stringify(Setting));
-    });
-};
-
 let Save;
 
 if (fs.existsSync(path.join(__dirname, "Save.json"))) {
@@ -203,15 +178,38 @@ if (argv.length > 2) {
                                     };
                                 };
 
-                                for (var i = 0; i < Door.call.length; i++) {
-                                    if (path.extname(Door.call[i]) == ".du") {
-                                        let file = fs.readFileSync(Door.call[i], { encoding: "utf-8" });
-                                        require("./interpreter").door(file, Door.call[i], Door, ";");
-                                    } else if (path.extname(Door.call[i]) == ".edu") {
-                                        let file = fs.readFileSync(Door.call[i], { encoding: "utf-8" });
-                                        require("./interpreter").edu(file, Door.call[i], Door, ";");
-                                    };
+                                // for (var i = 0; i < Door.call.length; i++) {
+                                //     if (path.extname(Door.call[i]) == ".du") {
+                                //         let file = fs.readFileSync(Door.call[i], { encoding: "utf-8" });
+                                //         require("./interpreter").door(file, Door.call[i], Door, ";");
+                                //     } else if (path.extname(Door.call[i]) == ".edu") {
+                                //         let file = fs.readFileSync(Door.call[i], { encoding: "utf-8" });
+                                //         require("./interpreter").edu(file, Door.call[i], Door, ";");
+                                //     };
+                                // };
+
+                                if (door.section) {
+                                    Door.section = door.section;
                                 };
+
+                                if (Door.module || Door.dataType) {
+                                    if (!Door.module) Door.module = {};
+
+                                    for (var i = 0; i < Door.call.length; i++) {
+                                        if (path.extname(Door.call[i]) == ".du") {
+                                            let file = fs.readFileSync(Door.call[i], { encoding: "utf-8" });
+                                            require("./interpreter").door(file, Door.call[i], Door, ";");
+                                        } else if (path.extname(Door.call[i]) == ".edu") {
+                                            let file = fs.readFileSync(Door.call[i], { encoding: "utf-8" });
+                                            require("./interpreter").edu(file, Door.call[i], Door, ";");
+                                        };
+                                    };
+                                } else {
+                                    for (var i = 0; i < Door.call.length; i++) {
+                                        let file = fs.readFileSync(Door.call[i], { encoding: "utf-8" });
+                                        require("./interpreter").main(file, Door.call[i], ";");
+                                    };
+                                }
                             } else {
                                 Console.gerror("File not found in directory Door.json", ["From: DuScript[Door] launcher.", "?: " + path.join(src, "Door.json")]);
                             };

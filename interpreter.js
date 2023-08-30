@@ -23,39 +23,55 @@ function main(text = "", src, separator = "") {
 
         let line = lines[i].replace(/\s+/gm, " ").trim().split(" ");
 
+        let comm = NaN;
+
         switch (line[0]) {
             case "approve":
+                comm = "approve";
                 if (!DuLine._approve(line, Com, i + 1)) {
+                    Console.info(`Work was stopped by command ${comm}.`);
                     stop();
                 };
                 break;
             case "print":
+                comm = "print";
                 if (!DuLine._print(line, Com, i + 1)) {
+                    Console.info(`Work was stopped by command ${comm}.`);
                     stop();
                 };
                 break;
             case "declare":
+                comm = "declare";
                 if (!DuLine._declare(line, Com, i + 1)) {
+                    Console.info(`Work was stopped by command ${comm}.`);
                     stop();
                 };
                 break;
             case "call":
+                comm = "call";
                 if (!DuLine._call(line, Com, i + 1)) {
+                    Console.info(`Work was stopped by command ${comm}.`);
                     stop();
                 };
                 break;
             case "if":
+                comm = "if";
                 if (!DuLine._if(line, Com, i + 1)) {
+                    Console.info(`Work was stopped by command ${comm}.`);
                     stop();
                 };
                 break;
             case "while":
+                comm = "while"
                 if (!DuLine._while(line, Com, i + 1)) {
+                    Console.info(`Work was stopped by command ${comm}.`);
                     stop();
                 };
                 break;
             case "delete":
+                comm = "delete";
                 if (!DuLine._delete(line, Com, i + 1)) {
+                    Console.info(`Work was stopped by command ${comm}.`);
                     stop();
                 };
                 break;
@@ -90,49 +106,73 @@ function door(text, src, Door, separator = "") {
 
         let line = lines[i].replace(/\s+/gm, " ").trim().split(" ");
 
+        let comm = NaN;
+
+        if (Door.section) Console.info("[Door]Executed: " + line.join(" "));
+
         switch (line[0]) {
             case "approve":
+                comm = "approve";
+
                 if (!DuLine.__approve(line, Com, Door, i + 1)) {
+                    Console.info(`Work was stopped by command ${comm}.`);
                     stop();
                 };
                 break;
             case "print":
+                comm = "print";
+
                 if (!DuLine._print(line, Com, i + 1)) {
+                    Console.info(`Work was stopped by command ${comm}.`);
                     stop();
                 };
                 break;
             case "declare":
+                comm = "declare";
                 if (!DuLine._declare(line, Com, i + 1)) {
+                    Console.info(`Work was stopped by command ${comm}.`);
                     stop();
                 };
                 break;
             case "call":
+                comm = "call";
                 if (!DuLine.__call(line, Com, Door, i + 1)) {
+                    Console.info(`Work was stopped by command ${comm}.`);
                     stop();
                 };
                 break;
             case "if":
+                comm = "if";
                 if (!DuLine.__if(line, Com, Door, i + 1)) {
+                    Console.info(`Work was stopped by command ${comm}.`);
                     stop();
                 };
                 break;
             case "while":
+                comm = "while";
                 if (!DuLine.__while(line, Com, Door, i + 1)) {
+                    Console.info(`Work was stopped by command ${comm}.`);
                     stop();
                 };
                 break;
             case "delete":
+                comm = "delete";
                 if (!DuLine._delete(line, Com, i + 1)) {
+                    Console.info(`Work was stopped by command ${comm}.`);
                     stop();
                 };
                 break;
             case "father":
+                comm = "father";
                 if (!DuLine.__father(line, Com, Door, i + 1)) {
+                    Console.info(`Work was stopped by command ${comm}.`);
                     stop();
                 };
                 break;
             case "mother":
+                comm = "mother";
                 if (!DuLine.__mother(line, Com, Door, i + 1)) {
+                    Console.info(`Work was stopped by command ${comm}.`);
                     stop();
                 };
                 break;
@@ -143,7 +183,9 @@ function door(text, src, Door, separator = "") {
             default:
                 if (Door.module[line[0]]) {
                     if (Door.module[line[0]].request) {
+                        comm = line[0];
                         if (!Door.module[line[0]].line(line, src, Com, Door)) {
+                            Console.info(`Work was stopped by command ${comm}.`);
                             stop();
                         };
                     } else {
@@ -156,6 +198,8 @@ function door(text, src, Door, separator = "") {
                 };
                 break;
         };
+
+        if (Door.section) Console.info(`[Door]Execution \"${line.join(" ")}\" is finished.`);
     };
 };
 
@@ -181,49 +225,71 @@ function edu(text, src, Door, separator = "") {
 
         let line = lines[i].replace(/\s+/gm, " ").trim().split(" ");
 
+        let comm = NaN;
+
+        if (Door.section) Console.info("[Edu]Executed: " + line.join(" "));
+
         switch (line[0]) {
             case "approve":
+                comm = "approve";
                 if (!DuLine.__approve(line, Com, Door, i + 1)) {
+                    Console.info(`Work was stopped by command ${comm}.`);
                     stop();
                 } else variable.push(line[1]);
                 break;
             case "print":
+                comm = "print";
                 if (!DuLine._print(line, Com, i + 1)) {
+                    Console.info(`Work was stopped by command ${comm}.`);
                     stop();
                 };
                 break;
             case "declare":
+                comm = "declare";
                 if (!DuLine._declare(line, Com, i + 1)) {
+                    Console.info(`Work was stopped by command ${comm}.`);
                     stop();
                 } else func.push(line[2]);
                 break;
             case "call":
+                comm = "call";
                 if (!DuLine.__call(line, Com, Door, i + 1)) {
+                    Console.info(`Work was stopped by command ${comm}.`);
                     stop();
                 };
                 break;
             case "if":
+                comm = "if";
                 if (!DuLine.__if(line, Com, Door, i + 1)) {
+                    Console.info(`Work was stopped by command ${comm}.`);
                     stop();
                 };
                 break;
             case "while":
+                comm = "while";
                 if (!DuLine.__while(line, Com, Door, i + 1)) {
+                    Console.info(`Work was stopped by command ${comm}.`);
                     stop();
                 };
                 break;
             case "delete":
+                comm = "delete";
                 if (!DuLine._delete(line, Com, i + 1)) {
+                    Console.info(`Work was stopped by command ${comm}.`);
                     stop();
                 };
                 break;
             case "father":
+                comm = "father";
                 if (!DuLine.__father(line, Com, Door, i + 1)) {
+                    Console.info(`Work was stopped by command ${comm}.`);
                     stop();
                 };
                 break;
             case "mother":
+                comm = "mother";
                 if (!DuLine.__mother(line, Com, Door, i + 1)) {
+                    Console.info(`Work was stopped by command ${comm}.`);
                     stop();
                 };
                 break;
@@ -242,7 +308,9 @@ function edu(text, src, Door, separator = "") {
             default:
                 if (Door.module[line[0]]) {
                     if (Door.module[line[0]].request) {
+                        comm = line[0];
                         if (!Door.module[line[0]].line(line, src, Com, Door)) {
+                            Console.info(`Work was stopped by command ${comm}.`);
                             stop();
                         };
                     } else {
@@ -255,6 +323,8 @@ function edu(text, src, Door, separator = "") {
                 };
                 break;
         };
+
+        if (Door.section) Console.info(`[Door]Execution \"${line.join(" ")}\" is finished.`);
     };
 
     variable.forEach((val) => {
