@@ -194,6 +194,7 @@ if (argv.length > 2) {
 
                                 if (Door.module || Door.dataType) {
                                     if (!Door.module) Door.module = {};
+                                    if (!Door.dataType) Door.dataType = {};
 
                                     for (var i = 0; i < Door.call.length; i++) {
                                         if (path.extname(Door.call[i]) == ".du") {

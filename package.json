@@ -1,6 +1,6 @@
 {
   "name": "duscript",
-  "version": "0.3.7",
+  "version": "0.3.8",
   "description": "The purpose of creating this language was an experiment to find out their strength. The peculiarity of this language is the modules unlimited by syntax.",
   "main": "duScript.js",
   "scripts": {},

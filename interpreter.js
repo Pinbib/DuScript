@@ -94,7 +94,8 @@ function door(text, src, Door, separator = "") {
         Declare: new DuCom._Declare("./Declare"),
         Console: Console,
         duScript: door,
-        Module: new DuCom.Module(Door)
+        Module: new DuCom.Module(Door),
+        dataType: new DuCom.DataType(Door)
     };
 
     let lines = text.split(new RegExp(`\\${separator}\\r?\\n?`)).filter(val => val.trim() !== "");
@@ -213,7 +214,8 @@ function edu(text, src, Door, separator = "") {
         Declare: new DuCom._Declare("./Declare"),
         Console: Console,
         duScript: door,
-        Module: new DuCom.Module(Door)
+        Module: new DuCom.Module(Door),
+        dataType: new DuCom.DataType(Door)
     };
 
     let lines = text.split(new RegExp(`\\${separator}\\r?\\n?`)).filter(val => val.trim() !== "");
