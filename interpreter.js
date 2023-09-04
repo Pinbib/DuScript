@@ -180,13 +180,17 @@ function door(text, src, Door, separator = "") {
                             function objectModule(obj, line) {
                                 let result = obj;
 
-                                for (const key of line) {
+                                for (let i = 0; i < line.length; i++) {
+                                    const key = line[i];
                                     if (result && result.hasOwnProperty(key)) {
                                         result = result[key];
+                                        if (typeof result === 'function') {
+                                            return { value: result, index: i + 2 };
+                                        };
                                     } else {
                                         return result;
-                                    }
-                                }
+                                    };
+                                };
 
                                 return result;
                             };
@@ -195,6 +199,11 @@ function door(text, src, Door, separator = "") {
 
                             if (typeof mod == "function") {
                                 if (!mod(line, src, Com, Door)) {
+                                    if (Door.section) Console.info(`Work was stopped by command ${comm}.`);
+                                    stop();
+                                };
+                            } else if (typeof mod == "object") {
+                                if (!mod.value(line.slice(mod.index), src, Com, Door)) {
                                     if (Door.section) Console.info(`Work was stopped by command ${comm}.`);
                                     stop();
                                 };
@@ -333,13 +342,17 @@ function edu(text, src, Door, separator = "") {
                             function objectModule(obj, line) {
                                 let result = obj;
 
-                                for (const key of line) {
+                                for (let i = 0; i < line.length; i++) {
+                                    const key = line[i];
                                     if (result && result.hasOwnProperty(key)) {
                                         result = result[key];
+                                        if (typeof result === 'function') {
+                                            return { value: result, index: i + 2 };
+                                        };
                                     } else {
                                         return result;
-                                    }
-                                }
+                                    };
+                                };
 
                                 return result;
                             };
@@ -348,6 +361,11 @@ function edu(text, src, Door, separator = "") {
 
                             if (typeof mod == "function") {
                                 if (!mod(line, src, Com, Door)) {
+                                    if (Door.section) Console.info(`Work was stopped by command ${comm}.`);
+                                    stop();
+                                };
+                            } else if (typeof mod == "object") {
+                                if (!mod.value(line.slice(mod.index), src, Com, Door)) {
                                     if (Door.section) Console.info(`Work was stopped by command ${comm}.`);
                                     stop();
                                 };
