@@ -23,55 +23,39 @@ function main(text = "", src, separator = "") {
 
         let line = lines[i].replace(/\s+/gm, " ").trim().split(" ");
 
-        let comm = NaN;
-
         switch (line[0]) {
             case "approve":
-                comm = "approve";
                 if (!DuLine._approve(line, Com, i + 1)) {
-                    Console.info(`Work was stopped by command ${comm}.`);
                     stop();
                 };
                 break;
             case "print":
-                comm = "print";
                 if (!DuLine._print(line, Com, i + 1)) {
-                    Console.info(`Work was stopped by command ${comm}.`);
                     stop();
                 };
                 break;
             case "declare":
-                comm = "declare";
                 if (!DuLine._declare(line, Com, i + 1)) {
-                    Console.info(`Work was stopped by command ${comm}.`);
                     stop();
                 };
                 break;
             case "call":
-                comm = "call";
                 if (!DuLine._call(line, Com, i + 1)) {
-                    Console.info(`Work was stopped by command ${comm}.`);
                     stop();
                 };
                 break;
             case "if":
-                comm = "if";
                 if (!DuLine._if(line, Com, i + 1)) {
-                    Console.info(`Work was stopped by command ${comm}.`);
                     stop();
                 };
                 break;
             case "while":
-                comm = "while"
                 if (!DuLine._while(line, Com, i + 1)) {
-                    Console.info(`Work was stopped by command ${comm}.`);
                     stop();
                 };
                 break;
             case "delete":
-                comm = "delete";
                 if (!DuLine._delete(line, Com, i + 1)) {
-                    Console.info(`Work was stopped by command ${comm}.`);
                     stop();
                 };
                 break;
@@ -116,7 +100,7 @@ function door(text, src, Door, separator = "") {
                 comm = "approve";
 
                 if (!DuLine.__approve(line, Com, Door, i + 1)) {
-                    Console.info(`Work was stopped by command ${comm}.`);
+                    if (Door.section) Console.info(`Work was stopped by command ${comm}.`);
                     stop();
                 };
                 break;
@@ -124,56 +108,56 @@ function door(text, src, Door, separator = "") {
                 comm = "print";
 
                 if (!DuLine._print(line, Com, i + 1)) {
-                    Console.info(`Work was stopped by command ${comm}.`);
+                    if (Door.section) Console.info(`Work was stopped by command ${comm}.`);
                     stop();
                 };
                 break;
             case "declare":
                 comm = "declare";
                 if (!DuLine._declare(line, Com, i + 1)) {
-                    Console.info(`Work was stopped by command ${comm}.`);
+                    if (Door.section) Console.info(`Work was stopped by command ${comm}.`);
                     stop();
                 };
                 break;
             case "call":
                 comm = "call";
                 if (!DuLine.__call(line, Com, Door, i + 1)) {
-                    Console.info(`Work was stopped by command ${comm}.`);
+                    if (Door.section) Console.info(`Work was stopped by command ${comm}.`);
                     stop();
                 };
                 break;
             case "if":
                 comm = "if";
                 if (!DuLine.__if(line, Com, Door, i + 1)) {
-                    Console.info(`Work was stopped by command ${comm}.`);
+                    if (Door.section) Console.info(`Work was stopped by command ${comm}.`);
                     stop();
                 };
                 break;
             case "while":
                 comm = "while";
                 if (!DuLine.__while(line, Com, Door, i + 1)) {
-                    Console.info(`Work was stopped by command ${comm}.`);
+                    if (Door.section) Console.info(`Work was stopped by command ${comm}.`);
                     stop();
                 };
                 break;
             case "delete":
                 comm = "delete";
                 if (!DuLine._delete(line, Com, i + 1)) {
-                    Console.info(`Work was stopped by command ${comm}.`);
+                    if (Door.section) Console.info(`Work was stopped by command ${comm}.`);
                     stop();
                 };
                 break;
             case "father":
                 comm = "father";
                 if (!DuLine.__father(line, Com, Door, i + 1)) {
-                    Console.info(`Work was stopped by command ${comm}.`);
+                    if (Door.section) Console.info(`Work was stopped by command ${comm}.`);
                     stop();
                 };
                 break;
             case "mother":
                 comm = "mother";
                 if (!DuLine.__mother(line, Com, Door, i + 1)) {
-                    Console.info(`Work was stopped by command ${comm}.`);
+                    if (Door.section) Console.info(`Work was stopped by command ${comm}.`);
                     stop();
                 };
                 break;
@@ -185,9 +169,36 @@ function door(text, src, Door, separator = "") {
                 if (Door.module[line[0]]) {
                     if (Door.module[line[0]].request) {
                         comm = line[0];
-                        if (!Door.module[line[0]].line(line, src, Com, Door)) {
-                            Console.info(`Work was stopped by command ${comm}.`);
-                            stop();
+
+                        if (typeof Door.module[line[0]].line == "function") {
+                            if (!Door.module[line[0]].line(line, src, Com, Door)) {
+                                if (Door.section) Console.info(`Work was stopped by command ${comm}.`);
+                                stop();
+                            };
+                        } else if (typeof Door.module[line[0]].line == "object") {
+
+                            function objectModule(obj, line) {
+                                let result = obj;
+
+                                for (const key of line) {
+                                    if (result && result.hasOwnProperty(key)) {
+                                        result = result[key];
+                                    } else {
+                                        return result;
+                                    }
+                                }
+
+                                return result;
+                            };
+
+                            let mod = objectModule(Door.module[line[0]].line, line.slice(1));
+
+                            if (typeof mod == "function") {
+                                if (!mod(line, src, Com, Door)) {
+                                    if (Door.section) Console.info(`Work was stopped by command ${comm}.`);
+                                    stop();
+                                };
+                            } else console.log(mod);
                         };
                     } else {
                         Console.ginfo("The module was not requested.", ["From: DuScript interpreter.", "Module: " + line[0], "Line: " + (i + 1)]);
@@ -235,63 +246,63 @@ function edu(text, src, Door, separator = "") {
             case "approve":
                 comm = "approve";
                 if (!DuLine.__approve(line, Com, Door, i + 1)) {
-                    Console.info(`Work was stopped by command ${comm}.`);
+                    if (Door.section) Console.info(`Work was stopped by command ${comm}.`);
                     stop();
                 } else variable.push(line[1]);
                 break;
             case "print":
                 comm = "print";
                 if (!DuLine._print(line, Com, i + 1)) {
-                    Console.info(`Work was stopped by command ${comm}.`);
+                    if (Door.section) Console.info(`Work was stopped by command ${comm}.`);
                     stop();
                 };
                 break;
             case "declare":
                 comm = "declare";
                 if (!DuLine._declare(line, Com, i + 1)) {
-                    Console.info(`Work was stopped by command ${comm}.`);
+                    if (Door.section) Console.info(`Work was stopped by command ${comm}.`);
                     stop();
                 } else func.push(line[2]);
                 break;
             case "call":
                 comm = "call";
                 if (!DuLine.__call(line, Com, Door, i + 1)) {
-                    Console.info(`Work was stopped by command ${comm}.`);
+                    if (Door.section) Console.info(`Work was stopped by command ${comm}.`);
                     stop();
                 };
                 break;
             case "if":
                 comm = "if";
                 if (!DuLine.__if(line, Com, Door, i + 1)) {
-                    Console.info(`Work was stopped by command ${comm}.`);
+                    if (Door.section) Console.info(`Work was stopped by command ${comm}.`);
                     stop();
                 };
                 break;
             case "while":
                 comm = "while";
                 if (!DuLine.__while(line, Com, Door, i + 1)) {
-                    Console.info(`Work was stopped by command ${comm}.`);
+                    if (Door.section) Console.info(`Work was stopped by command ${comm}.`);
                     stop();
                 };
                 break;
             case "delete":
                 comm = "delete";
                 if (!DuLine._delete(line, Com, i + 1)) {
-                    Console.info(`Work was stopped by command ${comm}.`);
+                    if (Door.section) Console.info(`Work was stopped by command ${comm}.`);
                     stop();
                 };
                 break;
             case "father":
                 comm = "father";
                 if (!DuLine.__father(line, Com, Door, i + 1)) {
-                    Console.info(`Work was stopped by command ${comm}.`);
+                    if (Door.section) Console.info(`Work was stopped by command ${comm}.`);
                     stop();
                 };
                 break;
             case "mother":
                 comm = "mother";
                 if (!DuLine.__mother(line, Com, Door, i + 1)) {
-                    Console.info(`Work was stopped by command ${comm}.`);
+                    if (Door.section) Console.info(`Work was stopped by command ${comm}.`);
                     stop();
                 };
                 break;
@@ -311,9 +322,36 @@ function edu(text, src, Door, separator = "") {
                 if (Door.module[line[0]]) {
                     if (Door.module[line[0]].request) {
                         comm = line[0];
-                        if (!Door.module[line[0]].line(line, src, Com, Door)) {
-                            Console.info(`Work was stopped by command ${comm}.`);
-                            stop();
+
+                        if (typeof Door.module[line[0]].line == "function") {
+                            if (!Door.module[line[0]].line(line, src, Com, Door)) {
+                                if (Door.section) Console.info(`Work was stopped by command ${comm}.`);
+                                stop();
+                            };
+                        } else if (typeof Door.module[line[0]].line == "object") {
+
+                            function objectModule(obj, line) {
+                                let result = obj;
+
+                                for (const key of line) {
+                                    if (result && result.hasOwnProperty(key)) {
+                                        result = result[key];
+                                    } else {
+                                        return result;
+                                    }
+                                }
+
+                                return result;
+                            };
+
+                            let mod = objectModule(Door.module[line[0]].line, line.slice(1));
+
+                            if (typeof mod == "function") {
+                                if (!mod(line, src, Com, Door)) {
+                                    if (Door.section) Console.info(`Work was stopped by command ${comm}.`);
+                                    stop();
+                                };
+                            } else console.log(mod);
                         };
                     } else {
                         Console.ginfo("The module was not requested.", ["From: DuScript interpreter.", "Module: " + line[0], "Line: " + (i + 1)]);
